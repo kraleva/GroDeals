@@ -74,7 +74,7 @@ class _CustomShoppingListState extends State<CustomShoppingList> {
                 });
               },
               background: Padding(
-                padding: const EdgeInsets.only(bottom: 22.0, top: 5),
+                padding: const EdgeInsets.only(bottom: 22.0, top: 9),
                 child: Container(
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.only(right: 20),
@@ -87,7 +87,7 @@ class _CustomShoppingListState extends State<CustomShoppingList> {
               child: Card(
                 elevation: 0,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,21 +113,21 @@ class _CustomShoppingListState extends State<CustomShoppingList> {
                                 decoration: const BoxDecoration(
                                     border: Border(
                                   right: BorderSide(
-                                    width: 2,
+                                    width: 1,
                                     color: Colors.grey,
                                   ),
                                   top: BorderSide(
-                                    width: 2,
+                                    width: 1,
                                     color: Colors.grey,
                                   ),
                                   bottom: BorderSide(
-                                    width: 2,
+                                    width: 1,
                                     color: Colors.grey,
                                   ),
                                 )),
                                 child: const Icon(
                                   Icons.remove,
-                                  color: Colors.grey,
+                                  color: Colors.black,
                                 ),
                               )
                             : GestureDetector(
