@@ -15,7 +15,7 @@ class _CustomShoppingListState extends State<CustomShoppingList> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    final products = ListProvider();
+    final products = Provider.of<ListProvider>(context);
     final product = products.items;
     return Scaffold(
         key: _scaffoldKey,

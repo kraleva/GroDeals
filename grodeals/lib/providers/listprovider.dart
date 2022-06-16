@@ -16,7 +16,10 @@ class ListItem {
 }
 
 class ListProvider with ChangeNotifier {
-  final Map<String, ListItem> _items = {};
+  final Map<String, ListItem> _items = {
+    "1": ListItem(title: "product1", id: "1", quantity: 1),
+    "2": ListItem(title: "product2", id: "2", quantity: 1),
+  };
 
   Map<String, ListItem> get items {
     return {..._items};

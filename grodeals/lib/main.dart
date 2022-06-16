@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:provider/provider.dart';
 import 'package:grodeals/widgets/customappbar.dart';
+import 'package:grodeals/providers/listprovider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,18 +14,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'GroDeals',
-        theme: ThemeData(
-          primarySwatch: Colors.orange,
-        ),
-        home: const Scaffold(
-            appBar: CustomAppBar(
-              height: 50,
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider.value(value: ListProvider()),
+        ],
+        child: MaterialApp(
+            title: 'GroDeals',
+            theme: ThemeData(
+              primarySwatch: Colors.orange,
             ),
-            body: Center(
-              child: RandomWords(),
-            )));
+            home: const Scaffold(
+                appBar: CustomAppBar(
+                  height: 50,
+                ),
+                body: Center(
+                  child: RandomWords(),
+                ))));
   }
 }
 
