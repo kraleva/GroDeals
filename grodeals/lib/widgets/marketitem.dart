@@ -16,6 +16,14 @@ class SupermarketItem extends StatelessWidget {
           Align(
               alignment: Alignment.centerLeft, child: Text(supermarket.title)),
           Align(
+              alignment: const Alignment(0.6, 0.0),
+              child: Text(supermarket.distance.toString(),
+                  style: const TextStyle(color: Colors.white))),
+          Align(
+              alignment: const Alignment(0.3, 0.0),
+              child: Text(supermarket.price.toString(),
+                  style: const TextStyle(color: Colors.white70))),
+          Align(
               alignment: Alignment.centerRight,
               child: IconButton(
                 icon: const Icon(Icons.add_task),
@@ -29,10 +37,12 @@ class SupermarketItem extends StatelessWidget {
   }
 
   Color getColor() {
-    if (supermarket.allAvailable) {
+    if (supermarket.title == "") {
+      return Color.fromARGB(255, 255, 152, 0);
+    } else if (supermarket.allAvailable) {
       return Color.fromARGB(255, 255, 212, 112);
     } else {
-      return Color.fromARGB(255, 104, 104, 104);
+      return Color.fromARGB(255, 212, 186, 155);
     }
   }
 }

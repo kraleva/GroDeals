@@ -19,23 +19,22 @@ class _SuggestedMarketsListState extends State<SuggestedMarketsList> {
     return ListView(
       padding: const EdgeInsets.all(8),
       children: <Widget>[
+        Stack(children: const [
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Text("Title",
+                  style: TextStyle(color: Colors.white, fontSize: 16))),
+          Align(
+              alignment: Alignment(0.65, -0.5),
+              child: Text("Distance",
+                  style: TextStyle(color: Colors.white, fontSize: 16))),
+          Align(
+              alignment: Alignment(0.3, -0.5),
+              child: Text("Price",
+                  style: TextStyle(color: Colors.white70, fontSize: 16))),
+        ]),
         for (var supermarket in supermarkets.supermarkets.values)
           SupermarketItem(supermarket: supermarket)
-        // Container(
-        //   height: 50,
-        //   color: Colors.amber[600],
-        //   child: const Center(child: Text('Entry A')),
-        // ),
-        // Container(
-        //   height: 50,
-        //   color: Colors.amber[500],
-        //   child: const Center(child: Text('Entry B')),
-        // ),
-        // Container(
-        //   height: 50,
-        //   color: Colors.amber[100],
-        //   child: const Center(child: Text('Entry C')),
-        // ),
       ],
     );
   }
