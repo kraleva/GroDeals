@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grodeals/providers/product.dart';
-import 'package:grodeals/providers/suggested_supermarkets.dart';
+import 'package:grodeals/providers/supermarkets.dart';
 
 class ListItem {
   final String title;
@@ -15,36 +15,22 @@ class ListItem {
   });
 }
 
-class ShoppingList {
-  final Map<String, ListItem> list;
-  late Supermarket supermarket;
-
-  ShoppingList({
-    required this.list,
-  });
-}
-
 class ListProvider with ChangeNotifier {
   final Map<String, ListItem> _items = {
-    "1": ListItem(title: "product1", id: "1", quantity: 1, available: true),
-    "2": ListItem(title: "product2", id: "2", quantity: 1, available: true),
+    "prd1": ListItem(title: "product1", id: "1", quantity: 1, available: true),
+    "prd2": ListItem(title: "product2", id: "2", quantity: 1, available: true),
   };
-  late ShoppingList _shoppingList;
-
-  ListProvider() {
-    _shoppingList = ShoppingList(list: _items);
-  }
 
   Map<String, ListItem> get items {
-    return {..._shoppingList.list};
+    return {..._items};
   }
 
   int get itemCount {
-    return _shoppingList.list.length;
+    return _items.length;
   }
 
   void incQuantity(String key) {
-    if (_shoppingList.list.containsKey(key)) {
+    if (_items.containsKey(key)) {
       print("Quantity plus");
       _items.update(
           key,
@@ -60,7 +46,7 @@ class ListProvider with ChangeNotifier {
   void decQuantity(String key) {
     if (_items.containsKey(key)) {
       print("Quantity minus");
-      _shoppingList.list.update(
+      _items.update(
           key,
           (existingListItem) => ListItem(
               title: existingListItem.title,
@@ -73,13 +59,13 @@ class ListProvider with ChangeNotifier {
 
   void removeItem(String id) {
     if (_items.containsKey(id)) {
-      _shoppingList.list.remove(id);
+      _items.remove(id);
     }
     notifyListeners();
   }
 
   void addProductToList(Product product) {
-    _shoppingList.list.putIfAbsent(
+    _items.putIfAbsent(
         product.id,
         () => ListItem(
             title: product.title,

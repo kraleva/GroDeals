@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:grodeals/providers/supermarkets.dart';
 import 'package:provider/provider.dart';
 import 'package:grodeals/widgets/customappbar.dart';
 import 'package:grodeals/providers/listprovider.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider.value(value: ListProvider()),
+          ChangeNotifierProvider.value(value: SupermarketProvider()),
         ],
         child: MaterialApp(
             title: 'GroDeals',
