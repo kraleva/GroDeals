@@ -32,7 +32,7 @@ class SupermarketProvider with ChangeNotifier {
       allAvailable: true,
       distance: 4.1,
       availabilityofproducts: {"prd1": true, "prd2": true},
-      reducedPricesOfProducts: {"prd1": 2.00, "prd2": 0.99},
+      reducedPricesOfProducts: {"prd1": 2.01, "prd2": 0.98},
       originalPricesOfProducts: {"prd1": 2.99, "prd2": 1.49},
       reducedProduct: {"prd1": true, "prd2": true},
     ),

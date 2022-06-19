@@ -134,7 +134,7 @@ class _ShoppingListForSupermarket extends State<ShoppingListForSupermarket> {
                     ),
                     RichText(
                         text: TextSpan(
-                      children: <InlineSpan>[
+                      children: <TextSpan>[
                         TextSpan(
                           text: originalPrices[
                               products.items.values.toList()[i].id],
@@ -143,10 +143,7 @@ class _ShoppingListForSupermarket extends State<ShoppingListForSupermarket> {
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
-                        WidgetSpan(
-                            child: const SizedBox(
-                          width: 15,
-                        )),
+                        TextSpan(text: "   "),
                         TextSpan(
                           text: reducedPrices[
                               products.items.values.toList()[i].id],
