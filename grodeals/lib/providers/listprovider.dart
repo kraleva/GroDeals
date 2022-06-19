@@ -7,12 +7,13 @@ class ListItem {
   final String id;
   final int quantity;
   final bool available;
-  ListItem({
-    required this.title,
-    required this.id,
-    required this.quantity,
-    required this.available,
-  });
+  final String category;
+  ListItem(
+      {required this.title,
+      required this.id,
+      required this.quantity,
+      required this.available,
+      required this.category});
 }
 
 class ListProvider with ChangeNotifier {
@@ -21,12 +22,14 @@ class ListProvider with ChangeNotifier {
         title: "Ceramont (der Sahnige)",
         id: "prd1",
         quantity: 1,
-        available: true),
+        available: true,
+        category: "Soft cheese"),
     "prd2": ListItem(
         title: "Körniger Frischkäse (Ja)",
         id: "prd2",
         quantity: 1,
-        available: true),
+        available: true,
+        category: "Soft cheese"),
   };
 
   Map<String, ListItem> get items {
@@ -35,6 +38,14 @@ class ListProvider with ChangeNotifier {
 
   int get itemCount {
     return _items.length;
+  }
+
+  String getCategory(String id) {
+    if (_items.containsKey(id)) {
+      return _items[id]!.category;
+    } else {
+      return "";
+    }
   }
 
   void incQuantity(String key) {
@@ -46,7 +57,8 @@ class ListProvider with ChangeNotifier {
               title: existingListItem.title,
               id: existingListItem.id,
               quantity: existingListItem.quantity + 1,
-              available: true));
+              available: true,
+              category: existingListItem.category));
     }
     notifyListeners();
   }
@@ -60,7 +72,8 @@ class ListProvider with ChangeNotifier {
               title: existingListItem.title,
               id: existingListItem.id,
               quantity: existingListItem.quantity - 1,
-              available: true));
+              available: true,
+              category: existingListItem.category));
     }
     notifyListeners();
   }
@@ -79,7 +92,8 @@ class ListProvider with ChangeNotifier {
             title: product.title,
             id: product.id,
             quantity: 1,
-            available: true));
+            available: true,
+            category: product.category));
     notifyListeners();
   }
 }

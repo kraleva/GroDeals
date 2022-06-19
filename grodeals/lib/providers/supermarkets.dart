@@ -56,8 +56,29 @@ class SupermarketProvider with ChangeNotifier {
     return _supermarkets.length;
   }
 
+  double getPrice(String id) {
+    if (_supermarkets.keys.contains(id)) {
+      return _supermarkets[id]!.price;
+    }
+    return 0.00;
+  }
+
+  Supermarket? getSupermarket(String id) {
+    return _supermarkets[id];
+  }
+
+  List<String> getUnavailable(String id) {
+    List<String> unavailable = [];
+    _supermarkets[id]!.availabilityofproducts.forEach((key, value) {
+      if (value == false) {
+        unavailable.add(key);
+      }
+    });
+    print(unavailable);
+    return unavailable;
+  }
+
   Map<String, bool> getAvailability(String id) {
-    print(id);
     if (_supermarkets.keys.contains(id)) {
       return _supermarkets[id]!.availabilityofproducts;
     }
