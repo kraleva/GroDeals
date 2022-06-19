@@ -19,14 +19,14 @@ class Supermarket {
 
 class SupermarketProvider with ChangeNotifier {
   final Map<String, Supermarket> _supermarkets = {
-    "1": Supermarket(
+    "sup1": Supermarket(
         title: "Rewe",
         id: "sup1",
         price: 2.99,
         allAvailable: true,
         distance: 4.1,
         availabilityofproducts: {"prd1": true, "prd2": true}),
-    "2": Supermarket(
+    "sup2": Supermarket(
         title: "Edeka",
         id: "sup2",
         price: 1.99,
@@ -41,5 +41,13 @@ class SupermarketProvider with ChangeNotifier {
 
   int get itemCount {
     return _supermarkets.length;
+  }
+
+  Map<String, bool> getAvailability(String id) {
+    print(id);
+    if (_supermarkets.keys.contains(id)) {
+      return _supermarkets[id]!.availabilityofproducts;
+    }
+    return {};
   }
 }

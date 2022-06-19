@@ -1,5 +1,7 @@
 import 'package:grodeals/providers/supermarkets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:grodeals/screens/market_list.dart';
 
 class SupermarketItem extends StatelessWidget {
   final Supermarket supermarket;
@@ -14,7 +16,11 @@ class SupermarketItem extends StatelessWidget {
         color: getColor(),
         child: Stack(children: [
           Align(
-              alignment: Alignment.centerLeft, child: Text(supermarket.title)),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                supermarket.title,
+                style: GoogleFonts.acme(color: Colors.white),
+              )),
           Align(
               alignment: const Alignment(0.6, 0.0),
               child: Text(supermarket.distance.toString(),
@@ -30,7 +36,8 @@ class SupermarketItem extends StatelessWidget {
                 tooltip: 'Choose Supermarket',
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => const MaterialApp()));
+                      builder: (BuildContext context) =>
+                          MarketList(supermarketid: supermarket.id)));
                 },
               )),
         ]));

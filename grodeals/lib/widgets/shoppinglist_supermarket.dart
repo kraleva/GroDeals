@@ -2,21 +2,25 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import "package:grodeals/providers/listprovider.dart";
 import 'package:flutter/material.dart';
+import 'package:grodeals/providers/supermarkets.dart';
 import 'package:provider/provider.dart';
 
-class ShoppingListWithRemove extends StatefulWidget {
-  const ShoppingListWithRemove({Key? key}) : super(key: key);
+class ShoppingListForSupermarket extends StatefulWidget {
+  final String supermarketid;
+  const ShoppingListForSupermarket({Key? key, required this.supermarketid})
+      : super(key: key);
 
   @override
-  State<ShoppingListWithRemove> createState() => _ShoppingListWithRemoveState();
+  State<ShoppingListForSupermarket> createState() =>
+      _ShoppingListForSupermarket();
 }
 
-class _ShoppingListWithRemoveState extends State<ShoppingListWithRemove> {
-  @override
+class _ShoppingListForSupermarket extends State<ShoppingListForSupermarket> {
   @override
   Widget build(BuildContext context) {
     final products = Provider.of<ListProvider>(context);
-    final product = products.items;
+    final supermarkets = Provider.of<SupermarketProvider>(context);
+    final availability = supermarkets.getAvailability(widget.supermarketid);
     return ListView.builder(
       itemBuilder: (ctx, i) => Container(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -73,12 +77,14 @@ class _ShoppingListWithRemoveState extends State<ShoppingListWithRemove> {
                 padding: const EdgeInsets.only(right: 20),
                 color: Colors.red,
                 child: Icon(
-                  color: Color.fromARGB(255, 187, 187, 187),
+                  color: Colors.white,
                   Icons.delete,
                 )),
           ),
           child: Card(
             elevation: 0,
+            color: getBackgroundColor(
+                availability[products.items.values.toList()[i].id]),
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Row(
@@ -192,5 +198,15 @@ class _ShoppingListWithRemoveState extends State<ShoppingListWithRemove> {
       ),
       itemCount: products.items.length,
     );
+  }
+
+  Color getBackgroundColor(bool? available) {
+    if (available == null) {
+      return Color.fromARGB(179, 236, 236, 236);
+    } else if (available) {
+      return Color.fromARGB(255, 255, 255, 255);
+    } else {
+      return Color.fromARGB(179, 236, 236, 236);
+    }
   }
 }

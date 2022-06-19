@@ -18,10 +18,13 @@ class ListItem {
 class ListProvider with ChangeNotifier {
   final Map<String, ListItem> _items = {
     "prd1": ListItem(
-        title: "Ceramont (der Sahnige)", id: "1", quantity: 1, available: true),
+        title: "Ceramont (der Sahnige)",
+        id: "prd1",
+        quantity: 1,
+        available: true),
     "prd2": ListItem(
         title: "Körniger Frischkäse (Ja)",
-        id: "2",
+        id: "prd2",
         quantity: 1,
         available: true),
   };
