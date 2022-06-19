@@ -17,13 +17,13 @@ class _SuggestedMarketsListState extends State<SuggestedMarketsList> {
   Widget build(BuildContext context) {
     final supermarkets = Provider.of<SupermarketProvider>(context);
     return ListView(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
       children: <Widget>[
         Stack(children: const [
           Align(
               alignment: Alignment.centerLeft,
-              child: Text("Title",
-                  style: TextStyle(color: Colors.white, fontSize: 16))),
+              child: Text("Supermarket",
+                  style: TextStyle(color: Colors.white, fontSize: 18))),
           Align(
               alignment: Alignment(0.65, -0.5),
               child: Text("Distance",

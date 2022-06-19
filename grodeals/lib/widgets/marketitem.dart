@@ -19,7 +19,7 @@ class SupermarketItem extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 supermarket.title,
-                style: GoogleFonts.acme(color: Colors.white),
+                style: GoogleFonts.acme(color: Colors.white, fontSize: 18),
               )),
           Align(
               alignment: const Alignment(0.6, 0.0),

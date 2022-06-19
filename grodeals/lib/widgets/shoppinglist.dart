@@ -18,6 +18,7 @@ class _ShoppingListWithRemoveState extends State<ShoppingListWithRemove> {
     final products = Provider.of<ListProvider>(context);
     final product = products.items;
     return ListView.builder(
+      padding: EdgeInsets.zero,
       itemBuilder: (ctx, i) => Container(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         height: 70,

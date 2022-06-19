@@ -21,6 +21,10 @@ class _ShoppingListForSupermarket extends State<ShoppingListForSupermarket> {
     final products = Provider.of<ListProvider>(context);
     final supermarkets = Provider.of<SupermarketProvider>(context);
     final availability = supermarkets.getAvailability(widget.supermarketid);
+    final reducedPrices =
+        supermarkets.getPricesAsText(widget.supermarketid, true);
+    final originalPrices =
+        supermarkets.getPricesAsText(widget.supermarketid, false);
     return ListView.builder(
       itemBuilder: (ctx, i) => Container(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -96,62 +100,15 @@ class _ShoppingListForSupermarket extends State<ShoppingListForSupermarket> {
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor),
+                        color: Theme.of(context).primaryColor,
+                        decoration: getStrikeThrough(availability[
+                            products.items.values.toList()[i].id])),
                   ),
                   Row(children: <Widget>[
                     Text(
                       "Quantity ",
                       style: TextStyle(color: Theme.of(context).primaryColor),
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    products.items.values.toList()[i].quantity == 1
-                        ? Container(
-                            decoration: const BoxDecoration(
-                                border: Border(
-                              right: BorderSide(
-                                width: 1,
-                                color: Colors.grey,
-                              ),
-                              top: BorderSide(
-                                width: 1,
-                                color: Colors.grey,
-                              ),
-                              bottom: BorderSide(
-                                width: 1,
-                                color: Colors.grey,
-                              ),
-                            )),
-                            child: const Icon(
-                              Icons.remove,
-                              color: Colors.black,
-                            ),
-                          )
-                        : GestureDetector(
-                            onTap: () {
-                              print("Item Removed");
-                              Provider.of<ListProvider>(context, listen: false)
-                                  .decQuantity(products.items.keys
-                                      .toList()[i]
-                                      .toString());
-                            },
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  border: Border(
-                                right: BorderSide(
-                                  width: 2,
-                                ),
-                                top: BorderSide(
-                                  width: 2,
-                                ),
-                                bottom: BorderSide(
-                                  width: 2,
-                                ),
-                              )),
-                              child: const Icon(Icons.remove),
-                            ),
-                          ),
                     const SizedBox(
                       width: 10,
                     ),
@@ -165,30 +122,37 @@ class _ShoppingListForSupermarket extends State<ShoppingListForSupermarket> {
                     const SizedBox(
                       width: 10,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        print(products.items.keys.toList()[i].toString());
-                        Provider.of<ListProvider>(context, listen: false)
-                            .incQuantity(
-                                products.items.keys.toList()[i].toString());
-                      },
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            border: Border(
-                          left: BorderSide(width: 2),
-                          top: BorderSide(
-                            width: 2,
-                          ),
-                          bottom: BorderSide(
-                            width: 2,
-                          ),
-                        )),
-                        child: const Icon(Icons.add),
-                      ),
-                    ),
                     const SizedBox(
                       width: 5,
                     ),
+                    Text(
+                      "Price ",
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    RichText(
+                        text: TextSpan(
+                      children: <InlineSpan>[
+                        TextSpan(
+                          text: originalPrices[
+                              products.items.values.toList()[i].id],
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                        WidgetSpan(
+                            child: const SizedBox(
+                          width: 15,
+                        )),
+                        TextSpan(
+                          text: reducedPrices[
+                              products.items.values.toList()[i].id],
+                        ),
+                      ],
+                    ))
                   ]),
                 ],
               ),
@@ -207,6 +171,16 @@ class _ShoppingListForSupermarket extends State<ShoppingListForSupermarket> {
       return Color.fromARGB(255, 255, 255, 255);
     } else {
       return Color.fromARGB(179, 236, 236, 236);
+    }
+  }
+
+  TextDecoration getStrikeThrough(bool? available) {
+    if (available == null) {
+      return TextDecoration.none;
+    } else if (available) {
+      return TextDecoration.none;
+    } else {
+      return TextDecoration.lineThrough;
     }
   }
 }

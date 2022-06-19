@@ -27,13 +27,22 @@ class _CustomShoppingListState extends State<CustomShoppingList> {
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
                 child: ShoppingListWithRemove(
               key: UniqueKey(),
             )),
+            Container(
+                padding: const EdgeInsets.only(bottom: 18),
+                child: const Align(
+                    alignment: Alignment.topCenter,
+                    child: Text("Recommended supermarkets",
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)))),
             Expanded(
                 child: SuggestedMarketsList(
               key: UniqueKey(),
