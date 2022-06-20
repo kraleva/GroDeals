@@ -9,9 +9,9 @@ class ListItem {
   final int quantity;
 
   ListItem({
-    required this.title,
-    required this.id,
-    required this.quantity,
+    this.title,
+    this.id,
+    this.quantity,
   });
 }
 

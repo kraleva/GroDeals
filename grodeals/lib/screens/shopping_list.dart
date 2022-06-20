@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 class CustomShoppingList extends StatefulWidget {
   const CustomShoppingList({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override
@@ -79,10 +79,7 @@ class _CustomShoppingListState extends State<CustomShoppingList> {
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.only(right: 20),
                     color: Colors.red,
-                    child: Icon(
-                      color: Colors.white,
-                      Icons.delete,
-                    )),
+                    ),
               ),
               child: Card(
                 elevation: 0,
