@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:grodeals/common_widgets/app_text.dart';
 import 'package:grodeals/models/grocery_item.dart';
 import 'package:grodeals/styles/colors.dart';
+import "package:grodeals/providers/supermarkets.dart";
+import 'package:provider/provider.dart';
 
 class GroceryItemCardWidget extends StatelessWidget {
   const GroceryItemCardWidget(
@@ -17,6 +19,7 @@ class GroceryItemCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final supermarkets = Provider.of<SupermarketProvider>(context);
     return Container(
       width: width,
       height: height,

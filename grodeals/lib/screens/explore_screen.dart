@@ -61,7 +61,6 @@ class ExploreScreen extends StatelessWidget {
   }
 
   Widget getStaggeredGridView(BuildContext context) {
-    final supermarkets = Provider.of<SupermarketProvider>(context);
     return StaggeredGridView.count(
       crossAxisCount: 4,
 
