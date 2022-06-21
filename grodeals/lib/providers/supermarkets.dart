@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grodeals/providers/listprovider.dart';
 
 class Supermarket {
   final String title;
@@ -10,6 +11,7 @@ class Supermarket {
   final Map<String, double> reducedPricesOfProducts;
   final Map<String, double> originalPricesOfProducts;
   final Map<String, bool> reducedProduct;
+  final Map<String, List<ListItem>> suggestions;
 
   Supermarket(
       {required this.title,
@@ -20,32 +22,103 @@ class Supermarket {
       required this.availabilityofproducts,
       required this.reducedPricesOfProducts,
       required this.originalPricesOfProducts,
-      required this.reducedProduct});
+      required this.reducedProduct,
+      required this.suggestions});
 }
 
 class SupermarketProvider with ChangeNotifier {
   final Map<String, Supermarket> _supermarkets = {
     "sup1": Supermarket(
-      title: "Rewe",
-      id: "sup1",
-      price: 2.99,
-      allAvailable: true,
-      distance: 4.1,
-      availabilityofproducts: {"prd1": true, "prd2": true},
-      reducedPricesOfProducts: {"prd1": 2.01, "prd2": 0.98},
-      originalPricesOfProducts: {"prd1": 2.99, "prd2": 1.49},
-      reducedProduct: {"prd1": true, "prd2": true},
-    ),
+        title: "Rewe",
+        id: "sup1",
+        price: 2.99,
+        allAvailable: true,
+        distance: 4.1,
+        availabilityofproducts: {
+          "prd1": true,
+          "prd2": true,
+          "prd3": true,
+          "prd4": true,
+          "prd5": true
+        },
+        reducedPricesOfProducts: {
+          "prd1": 2.01,
+          "prd2": 0.98,
+          "prd3": 2.01,
+          "prd4": 1.29,
+          "prd5": 1.29
+        },
+        originalPricesOfProducts: {
+          "prd1": 2.99,
+          "prd2": 1.49,
+          "prd3": 2.99,
+          "prd4": 1.29,
+          "prd5": 1.29
+        },
+        reducedProduct: {
+          "prd1": true,
+          "prd2": true,
+          "prd3": true,
+          "prd4": false,
+          "prd5": false
+        },
+        suggestions: {}),
     "sup2": Supermarket(
         title: "Edeka",
         id: "sup2",
         price: 1.99,
         allAvailable: false,
         distance: 6.1,
-        availabilityofproducts: {"prd1": true, "prd2": false},
-        reducedPricesOfProducts: {"prd1": 1.99, "prd2": 0.00},
-        originalPricesOfProducts: {"prd1": 2.99, "prd2": 0.00},
-        reducedProduct: {"prd1": true, "prd2": false})
+        availabilityofproducts: {
+          "prd1": true,
+          "prd2": false,
+          "prd3": true,
+          "prd4": true,
+          "prd5": true
+        },
+        reducedPricesOfProducts: {
+          "prd1": 1.99,
+          "prd2": 0.00,
+          "prd3": 2.01,
+          "prd4": 1.29,
+          "prd5": 1.29
+        },
+        originalPricesOfProducts: {
+          "prd1": 2.99,
+          "prd2": 0.00,
+          "prd3": 2.99,
+          "prd4": 1.29,
+          "prd5": 1.29
+        },
+        reducedProduct: {
+          "prd1": true,
+          "prd2": false,
+          "prd3": true,
+          "prd4": false,
+          "prd5": false
+        },
+        suggestions: {
+          "prd2": [
+            ListItem(
+                title: "Ceramont (der Cremige)",
+                id: "prd3",
+                quantity: 1,
+                available: true,
+                category: "Soft cheese"),
+            ListItem(
+                title: "Weichkase (Ja)",
+                id: "prd4",
+                quantity: 1,
+                available: true,
+                category: "Soft cheese"),
+            ListItem(
+                title: "Brie (Ja)",
+                id: "prd5",
+                quantity: 1,
+                available: true,
+                category: "Soft cheese"),
+          ]
+        })
   };
 
   Map<String, Supermarket> get supermarkets {
@@ -96,6 +169,23 @@ class SupermarketProvider with ChangeNotifier {
       return _supermarkets[id]!.reducedPricesOfProducts;
     }
     return {};
+  }
+
+  //returns a list of values, 1st value is minimal price, the second if it is reduced
+  List getLowestPriceForProduct(String productid) {
+    double? minimalPrice = double.infinity;
+    bool? reduced = false;
+    _supermarkets.forEach((key, value) {
+      if (value.reducedPricesOfProducts[productid]! < minimalPrice!) {
+        minimalPrice = value.reducedPricesOfProducts[productid];
+        reduced = true;
+      }
+      if (value.originalPricesOfProducts[productid]! <= minimalPrice!) {
+        minimalPrice = value.originalPricesOfProducts[productid];
+        reduced = false;
+      }
+    });
+    return [minimalPrice, reduced];
   }
 
   Map<String, String> getPricesAsText(String id, bool reduced) {

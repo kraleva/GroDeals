@@ -9,14 +9,7 @@ import 'package:grodeals/widgets/search_bar_widget.dart';
 import 'category_items_screen.dart';
 
 List<Color> gridColors = [
-  Color(0xff53B175),
-  Color(0xffF8A44C),
-  Color(0xffF7A593),
-  Color(0xffD3B0E0),
-  Color(0xffFDE598),
-  Color(0xffB7DFF5),
-  Color(0xff836AF6),
-  Color(0xffD73B77),
+  const Color.fromARGB(255, 253, 201, 145),
 ];
 
 class ExploreScreen extends StatelessWidget {
@@ -25,7 +18,7 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(
+        appBar: const CustomAppBar(
           height: 50,
         ),
         body: SafeArea(
@@ -43,7 +36,7 @@ class ExploreScreen extends StatelessWidget {
   Widget getHeader() {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Center(
@@ -54,10 +47,10 @@ class ExploreScreen extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: SearchBarWidget(),
         ),
@@ -71,7 +64,7 @@ class ExploreScreen extends StatelessWidget {
 
       //Here is the place that we are getting flexible/ dynamic card for various images
       staggeredTiles: categoryItemsDemo
-          .map<StaggeredTile>((_) => StaggeredTile.fit(2))
+          .map<StaggeredTile>((_) => const StaggeredTile.fit(2))
           .toList(),
       mainAxisSpacing: 3.0,
       crossAxisSpacing: 4.0,
