@@ -1,5 +1,3 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import "package:grodeals/providers/listprovider.dart";
 import 'package:flutter/material.dart';
 import 'package:grodeals/providers/supermarkets.dart';
@@ -80,9 +78,9 @@ class _ShoppingListForSupermarket extends State<ShoppingListForSupermarket> {
                 alignment: Alignment.centerRight,
                 padding: const EdgeInsets.only(right: 20),
                 color: Colors.red,
-                child: Icon(
-                  color: Colors.white,
+                child: const Icon(
                   Icons.delete,
+                  color: Colors.white,
                 )),
           ),
           child: Card(
@@ -143,7 +141,7 @@ class _ShoppingListForSupermarket extends State<ShoppingListForSupermarket> {
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
-                        TextSpan(text: "   "),
+                        const TextSpan(text: "   "),
                         TextSpan(
                           text: reducedPrices[
                               products.items.values.toList()[i].id],
@@ -163,11 +161,11 @@ class _ShoppingListForSupermarket extends State<ShoppingListForSupermarket> {
 
   Color getBackgroundColor(bool? available) {
     if (available == null) {
-      return Color.fromARGB(179, 236, 236, 236);
+      return const Color.fromARGB(179, 236, 236, 236);
     } else if (available) {
-      return Color.fromARGB(255, 255, 255, 255);
+      return const Color.fromARGB(255, 255, 255, 255);
     } else {
-      return Color.fromARGB(179, 236, 236, 236);
+      return const Color.fromARGB(179, 236, 236, 236);
     }
   }
 

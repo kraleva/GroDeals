@@ -4,9 +4,11 @@ import 'package:grodeals/styles/colors.dart';
 class ItemCounterWidget extends StatefulWidget {
   final Function onAmountChanged;
 
-  const ItemCounterWidget({Key key, this.onAmountChanged}) : super(key: key);
+  const ItemCounterWidget({Key? key, required this.onAmountChanged})
+      : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ItemCounterWidgetState createState() => _ItemCounterWidgetState();
 }
 
@@ -20,7 +22,7 @@ class _ItemCounterWidgetState extends State<ItemCounterWidget> {
         iconWidget(Icons.remove,
             iconColor: AppColors.darkGrey, onPressed: decrementAmount),
         SizedBox(width: 18),
-        Container(
+        SizedBox(
             width: 30,
             child: Center(
                 child: getText(
@@ -48,12 +50,10 @@ class _ItemCounterWidgetState extends State<ItemCounterWidget> {
   }
 
   void updateParent() {
-    if (widget.onAmountChanged != null) {
-      widget.onAmountChanged(amount);
-    }
+    widget.onAmountChanged(amount);
   }
 
-  Widget iconWidget(IconData iconData, {Color iconColor, onPressed}) {
+  Widget iconWidget(IconData iconData, {required Color iconColor, onPressed}) {
     return GestureDetector(
       onTap: () {
         if (onPressed != null) {
@@ -72,7 +72,7 @@ class _ItemCounterWidgetState extends State<ItemCounterWidget> {
         child: Center(
           child: Icon(
             iconData,
-            color: iconColor ?? Colors.black,
+            color: Colors.black,
             size: 25,
           ),
         ),
@@ -81,8 +81,8 @@ class _ItemCounterWidgetState extends State<ItemCounterWidget> {
   }
 
   Widget getText(
-      {String text,
-      double fontSize,
+      {required String text,
+      double fontSize = 12,
       bool isBold = false,
       color = Colors.black}) {
     return Text(

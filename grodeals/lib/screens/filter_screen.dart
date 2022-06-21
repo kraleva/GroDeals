@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grodeals/common_widgets/app_button.dart';
 import 'package:grodeals/common_widgets/app_text.dart';
 import 'package:grodeals/styles/colors.dart';
 
 class FilterScreen extends StatelessWidget {
+  const FilterScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,14 +17,13 @@ class FilterScreen extends StatelessWidget {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Container(
-            child: Icon(
-              Icons.close,
-              color: Colors.black,
-            ),
+          child: const Icon(
+            Icons.close,
+            color: Colors.black,
           ),
         ),
         title: AppText(
+          key: UniqueKey(),
           text: "Filters",
           fontSize: 20,
           fontWeight: FontWeight.bold,
@@ -61,6 +61,7 @@ class FilterScreen extends StatelessWidget {
             OptionItem(text: "Kazi Formas"),
             Spacer(),
             AppButton(
+              key: UniqueKey(),
               label: "Apply Filter",
               fontWeight: FontWeight.w600,
               onPressed: () {
@@ -85,9 +86,10 @@ class FilterScreen extends StatelessWidget {
 class OptionItem extends StatefulWidget {
   final String text;
 
-  const OptionItem({Key key, this.text}) : super(key: key);
+  const OptionItem({Key? key, this.text = "test"}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _OptionItemState createState() => _OptionItemState();
 }
 
@@ -102,16 +104,14 @@ class _OptionItemState extends State<OptionItem> {
           checked = !checked;
         });
       },
-      child: Container(
-        child: Row(
-          children: [
-            getCheckBox(),
-            SizedBox(
-              width: 12,
-            ),
-            getTextWidget(),
-          ],
-        ),
+      child: Row(
+        children: [
+          getCheckBox(),
+          const SizedBox(
+            width: 12,
+          ),
+          getTextWidget(),
+        ],
       ),
     );
   }

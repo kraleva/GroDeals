@@ -4,13 +4,15 @@ import 'package:flutter_svg/svg.dart';
 class SearchBarWidget extends StatelessWidget {
   final String searchIcon = "assets/icons/search_icon.svg";
 
+  const SearchBarWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       width: double.maxFinite,
       decoration: BoxDecoration(
-        color: Color(0xFFF2F3F2),
+        color: const Color(0xFFF2F3F2),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -19,10 +21,10 @@ class SearchBarWidget extends StatelessWidget {
           SvgPicture.asset(
             searchIcon,
           ),
-          SizedBox(
+          const SizedBox(
             width: 8,
           ),
-          Text(
+          const Text(
             "Search Store",
             style: TextStyle(
                 fontSize: 18,

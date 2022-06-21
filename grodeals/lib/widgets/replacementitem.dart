@@ -1,8 +1,5 @@
-import 'package:grodeals/providers/supermarkets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grodeals/screens/market_list.dart';
-import 'package:provider/provider.dart';
 
 class ReplacementItem extends StatelessWidget {
   final String category;
@@ -10,7 +7,6 @@ class ReplacementItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final supermarkets = Provider.of<SupermarketProvider>(context);
     return Container(
         height: 50,
         padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),

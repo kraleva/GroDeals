@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:grodeals/common_widgets/app_text.dart';
@@ -7,9 +6,9 @@ import 'package:grodeals/screens/product_details/product_details_screen.dart';
 import 'package:grodeals/screens/shopping_list.dart';
 import 'package:grodeals/widgets/grocery_item_card_widget.dart';
 
-import 'filter_screen.dart';
-
 class CategoryItemsScreen extends StatelessWidget {
+  const CategoryItemsScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +34,8 @@ class CategoryItemsScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CustomShoppingList()),
+                MaterialPageRoute(
+                    builder: (context) => CustomShoppingList(key: UniqueKey())),
               );
             },
             child: Container(
@@ -52,6 +52,7 @@ class CategoryItemsScreen extends StatelessWidget {
             horizontal: 25,
           ),
           child: AppText(
+            key: UniqueKey(),
             text: "Beverages",
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -60,6 +61,10 @@ class CategoryItemsScreen extends StatelessWidget {
       ),
       body: StaggeredGridView.count(
         crossAxisCount: 4,
+        staggeredTiles:
+            beverages.map<StaggeredTile>((_) => StaggeredTile.fit(2)).toList(),
+        mainAxisSpacing: 3.0,
+        crossAxisSpacing: 0.0,
         // I only need two card horizontally
         children: beverages.asMap().entries.map<Widget>((e) {
           GroceryItem groceryItem = e.value;
@@ -68,18 +73,14 @@ class CategoryItemsScreen extends StatelessWidget {
               onItemClicked(context, groceryItem);
             },
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: GroceryItemCardWidget(
                 item: groceryItem,
                 heroSuffix: "explore_screen",
               ),
             ),
           );
-        }).toList(),
-        staggeredTiles:
-            beverages.map<StaggeredTile>((_) => StaggeredTile.fit(2)).toList(),
-        mainAxisSpacing: 3.0,
-        crossAxisSpacing: 0.0, // add some space
+        }).toList(), // add some space
       ),
     );
   }

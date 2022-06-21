@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:grodeals/styles/colors.dart';
 
@@ -10,18 +12,18 @@ class AppButton extends StatelessWidget {
   final Function onPressed;
 
   const AppButton({
-    Key key,
-    this.label,
+    Key? key,
+    required this.label,
     this.roundness = 18,
     this.fontWeight = FontWeight.bold,
     this.padding = const EdgeInsets.symmetric(vertical: 24),
-    this.trailingWidget,
-    this.onPressed,
+    this.trailingWidget = const SizedBox(width: 1),
+    required this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.maxFinite,
       child: RaisedButton(
         visualDensity: VisualDensity.compact,
@@ -45,16 +47,15 @@ class AppButton extends StatelessWidget {
                 ),
               ),
             ),
-            if (trailingWidget != null)
-              Positioned(
-                top: 0,
-                right: 25,
-                child: trailingWidget,
-              )
+            Positioned(
+              top: 0,
+              right: 25,
+              child: trailingWidget,
+            )
           ],
         ),
         onPressed: () {
-          if (onPressed != null) onPressed();
+          onPressed();
         },
       ),
     );

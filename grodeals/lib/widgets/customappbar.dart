@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:grodeals/providers/listprovider.dart';
-import 'package:grodeals/screens/category_items_screen.dart';
 import 'package:grodeals/screens/shopping_list.dart';
-import 'package:grodeals/screens/product_details/product_details_screen.dart';
-import 'package:grodeals/models/grocery_item.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
 
-  CustomAppBar({
-    Key key,
+  const CustomAppBar({
+    Key? key,
     required this.height,
   }) : super(key: key);
 
@@ -21,7 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(actions: <Widget>[
       Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Container(
+        child: SizedBox(
             height: 150.0,
             width: 30.0,
             child: GestureDetector(

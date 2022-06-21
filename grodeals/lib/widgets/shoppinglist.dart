@@ -1,5 +1,3 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import "package:grodeals/providers/listprovider.dart";
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +14,6 @@ class _ShoppingListWithRemoveState extends State<ShoppingListWithRemove> {
   @override
   Widget build(BuildContext context) {
     final products = Provider.of<ListProvider>(context);
-    final product = products.items;
     return ListView.builder(
       padding: EdgeInsets.zero,
       itemBuilder: (ctx, i) => Container(
@@ -73,9 +70,9 @@ class _ShoppingListWithRemoveState extends State<ShoppingListWithRemove> {
                 alignment: Alignment.centerRight,
                 padding: const EdgeInsets.only(right: 20),
                 color: Colors.red,
-                child: Icon(
-                  color: Color.fromARGB(255, 187, 187, 187),
+                child: const Icon(
                   Icons.delete,
+                  color: Color.fromARGB(255, 187, 187, 187),
                 )),
           ),
           child: Card(
@@ -125,7 +122,6 @@ class _ShoppingListWithRemoveState extends State<ShoppingListWithRemove> {
                           )
                         : GestureDetector(
                             onTap: () {
-                              print("Item Removed");
                               Provider.of<ListProvider>(context, listen: false)
                                   .decQuantity(products.items.keys
                                       .toList()[i]
@@ -162,7 +158,6 @@ class _ShoppingListWithRemoveState extends State<ShoppingListWithRemove> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        print(products.items.keys.toList()[i].toString());
                         Provider.of<ListProvider>(context, listen: false)
                             .incQuantity(
                                 products.items.keys.toList()[i].toString());

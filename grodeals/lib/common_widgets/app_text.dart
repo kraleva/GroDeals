@@ -7,19 +7,20 @@ class AppText extends StatelessWidget {
   final Color color;
   final TextAlign textAlign;
 
-  const AppText({
-    Key key,
-    this.text,
-    this.fontSize = 18,
-    this.fontWeight = FontWeight.normal,
-    this.color = Colors.black,
-    this.textAlign,
-  }) : super(key: key);
+  const AppText(
+      {Key? key,
+      required this.text,
+      this.fontSize = 18,
+      this.fontWeight = FontWeight.normal,
+      this.color = Colors.black,
+      this.textAlign = TextAlign.center})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      // ignore: unnecessary_null_comparison
       textAlign: textAlign == null ? null : TextAlign.center,
       style: TextStyle(
         fontSize: fontSize,

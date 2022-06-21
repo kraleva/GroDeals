@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:grodeals/providers/supermarkets.dart";
-import "package:grodeals/providers/listprovider.dart";
 import 'package:grodeals/widgets/shoppinglist_supermarket.dart';
 import 'package:provider/provider.dart';
-import 'package:grodeals/widgets/replacementitem.dart';
 import 'package:grodeals/widgets/replacementitemlist.dart';
 
 class MarketList extends StatefulWidget {
@@ -20,7 +18,6 @@ class _MarketListState extends State<MarketList> {
   @override
   Widget build(BuildContext context) {
     final supermarkets = Provider.of<SupermarketProvider>(context);
-    final products = Provider.of<ListProvider>(context);
     final supermarketUnavailable =
         supermarkets.getUnavailable(widget.supermarketid);
     return Scaffold(

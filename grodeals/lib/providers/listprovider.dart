@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:grodeals/providers/product.dart';
-import 'package:grodeals/providers/supermarkets.dart';
 
 class ListItem {
   final String title;
@@ -50,7 +49,6 @@ class ListProvider with ChangeNotifier {
 
   void incQuantity(String key) {
     if (_items.containsKey(key)) {
-      print("Quantity plus");
       _items.update(
           key,
           (existingListItem) => ListItem(
@@ -65,7 +63,6 @@ class ListProvider with ChangeNotifier {
 
   void decQuantity(String key) {
     if (_items.containsKey(key)) {
-      print("Quantity minus");
       _items.update(
           key,
           (existingListItem) => ListItem(

@@ -6,10 +6,11 @@ import 'package:grodeals/styles/colors.dart';
 import 'item_counter_widget.dart';
 
 class ChartItemWidget extends StatefulWidget {
-  ChartItemWidget({Key key, this.item}) : super(key: key);
+  const ChartItemWidget({Key? key, required this.item}) : super(key: key);
   final GroceryItem item;
 
   @override
+  // ignore: library_private_types_in_public_api
   _ChartItemWidgetState createState() => _ChartItemWidgetState();
 }
 
@@ -74,7 +75,7 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                 Spacer(
                   flex: 5,
                 ),
-                Container(
+                SizedBox(
                   width: 70,
                   child: AppText(
                     text: "\$${getPrice().toStringAsFixed(2)}",
@@ -93,7 +94,7 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
   }
 
   Widget imageWidget() {
-    return Container(
+    return SizedBox(
       width: 100,
       child: Image.asset(widget.item.imagePath),
     );

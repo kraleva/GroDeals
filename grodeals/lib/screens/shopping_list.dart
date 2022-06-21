@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import "package:grodeals/providers/listprovider.dart";
-import 'package:provider/provider.dart';
 import 'package:grodeals/widgets/shoppinglist.dart';
 import 'package:grodeals/widgets/suggestedmarketslist.dart';
 
 class CustomShoppingList extends StatefulWidget {
-  CustomShoppingList({
+  const CustomShoppingList({
     required Key key,
   }) : super(key: key);
 
@@ -17,7 +15,6 @@ class _CustomShoppingListState extends State<CustomShoppingList> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    final products = Provider.of<ListProvider>(context);
     return Scaffold(
         key: _scaffoldKey,
         backgroundColor: Theme.of(context).primaryColor,

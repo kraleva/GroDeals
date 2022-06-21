@@ -1,5 +1,3 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:grodeals/providers/listprovider.dart';
 import 'package:grodeals/providers/supermarkets.dart';
@@ -36,7 +34,7 @@ class _SuggestedMarketsListState extends State<ReplacecmentItemsList> {
                     child: Text("See suggestions",
                         style: TextStyle(color: Colors.white, fontSize: 16))),
               ])
-            : Stack(children: const []),
+            : const SizedBox(height: 1),
         for (var unavailable in supermarketUnavailable)
           ReplacementItem(
             category: products.getCategory(unavailable),

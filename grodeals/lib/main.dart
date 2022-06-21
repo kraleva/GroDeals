@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:grodeals/providers/supermarkets.dart';
-import 'package:grodeals/screens/category_items_screen.dart';
 import 'package:grodeals/screens/explore_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:grodeals/widgets/customappbar.dart';
 import 'package:grodeals/providers/listprovider.dart';
 
 void main() {
@@ -12,7 +10,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({required Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override

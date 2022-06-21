@@ -4,7 +4,8 @@ import 'package:grodeals/models/grocery_item.dart';
 import 'package:grodeals/styles/colors.dart';
 
 class GroceryItemCardWidget extends StatelessWidget {
-  GroceryItemCardWidget({Key key, this.item, this.heroSuffix})
+  GroceryItemCardWidget(
+      {Key? key, required this.item, required this.heroSuffix})
       : super(key: key);
   final GroceryItem item;
   final String heroSuffix;
@@ -38,12 +39,12 @@ class GroceryItemCardWidget extends StatelessWidget {
             Expanded(
               child: Center(
                 child: Hero(
-                  tag: "GroceryItem:" + item.name + "-" + (heroSuffix ?? ""),
+                  tag: "GroceryItem:${item.name}-$heroSuffix",
                   child: imageWidget(),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             AppText(
@@ -78,9 +79,7 @@ class GroceryItemCardWidget extends StatelessWidget {
   }
 
   Widget imageWidget() {
-    return Container(
-      child: Image.asset(item.imagePath),
-    );
+    return Image.asset(item.imagePath);
   }
 
   Widget addWidget() {

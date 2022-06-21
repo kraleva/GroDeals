@@ -6,7 +6,11 @@ class GroceryItem {
   final String imagePath;
 
   GroceryItem(
-      {this.id, this.name, this.description, this.price, this.imagePath});
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.price,
+      required this.imagePath});
 }
 
 var demoItems = [
