@@ -39,28 +39,56 @@ class SupermarketProvider with ChangeNotifier {
           "prd2": true,
           "prd3": true,
           "prd4": true,
-          "prd5": true
+          "prd5": true,
+          "prd6": true,
+          "prd7": true,
+          "prd8": true,
+          "prd9": true,
+          "prd10": true,
+          "prd11": true,
+          "prd12": true
         },
         reducedPricesOfProducts: {
           "prd1": 2.01,
           "prd2": 0.98,
           "prd3": 2.01,
           "prd4": 1.29,
-          "prd5": 1.29
+          "prd5": 1.29,
+          "prd6": 4.99,
+          "prd7": 1.99,
+          "prd8": 1.50,
+          "prd9": 15.99,
+          "prd10": 1.50,
+          "prd11": 4.99,
+          "prd12": 4.99
         },
         originalPricesOfProducts: {
           "prd1": 2.99,
           "prd2": 1.49,
           "prd3": 2.99,
           "prd4": 1.29,
-          "prd5": 1.29
+          "prd5": 1.29,
+          "prd6": 4.99,
+          "prd7": 2.99,
+          "prd8": 1.50,
+          "prd9": 15.99,
+          "prd10": 2.50,
+          "prd11": 4.99,
+          "prd12": 4.99
         },
         reducedProduct: {
           "prd1": true,
           "prd2": true,
           "prd3": true,
           "prd4": false,
-          "prd5": false
+          "prd5": false,
+          "prd6": false,
+          "prd7": true,
+          "prd8": false,
+          "prd9": false,
+          "prd10": true,
+          "prd11": false,
+          "prd12": false
         },
         suggestions: {}),
     "sup2": Supermarket(
@@ -74,31 +102,59 @@ class SupermarketProvider with ChangeNotifier {
           "prd2": false,
           "prd3": true,
           "prd4": true,
-          "prd5": true
+          "prd5": true,
+          "prd6": true,
+          "prd7": true,
+          "prd8": true,
+          "prd9": true,
+          "prd10": true,
+          "prd11": true,
+          "prd12": true
         },
         reducedPricesOfProducts: {
           "prd1": 1.99,
           "prd2": 0.00,
           "prd3": 2.01,
           "prd4": 1.29,
-          "prd5": 1.29
+          "prd5": 1.29,
+          "prd6": 4.99,
+          "prd7": 1.99,
+          "prd8": 1.50,
+          "prd9": 15.99,
+          "prd10": 1.50,
+          "prd11": 4.99,
+          "prd12": 4.99
         },
         originalPricesOfProducts: {
           "prd1": 2.99,
           "prd2": 0.00,
           "prd3": 2.99,
           "prd4": 1.29,
-          "prd5": 1.29
+          "prd5": 1.29,
+          "prd6": 4.99,
+          "prd7": 2.99,
+          "prd8": 1.50,
+          "prd9": 15.99,
+          "prd10": 2.50,
+          "prd11": 4.99,
+          "prd12": 4.99
         },
         reducedProduct: {
           "prd1": true,
           "prd2": false,
           "prd3": true,
           "prd4": false,
-          "prd5": false
+          "prd5": false,
+          "prd6": false,
+          "prd7": true,
+          "prd8": false,
+          "prd9": false,
+          "prd10": true,
+          "prd11": false,
+          "prd12": false
         },
         suggestions: {
-          "prd2": suggestedItems
+          "prd2": suggestedProducts
         })
   };
 

@@ -5,6 +5,8 @@ import 'package:grodeals/models/category_item.dart';
 import 'package:grodeals/widgets/category_item_card_widget.dart';
 import 'package:grodeals/widgets/customappbar.dart';
 import 'package:grodeals/widgets/search_bar_widget.dart';
+import 'package:provider/provider.dart';
+import "package:grodeals/providers/supermarkets.dart";
 
 import 'category_items_screen.dart';
 
@@ -59,6 +61,7 @@ class ExploreScreen extends StatelessWidget {
   }
 
   Widget getStaggeredGridView(BuildContext context) {
+    final supermarkets = Provider.of<SupermarketProvider>(context);
     return StaggeredGridView.count(
       crossAxisCount: 4,
 

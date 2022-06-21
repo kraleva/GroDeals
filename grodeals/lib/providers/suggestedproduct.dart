@@ -13,7 +13,7 @@ class Product with ChangeNotifier {
       required this.category});
 }
 
-var suggestedItems = [
+var suggestedProducts = [
   Product(
       title: "Ceramont (der Cremige)",
       id: "prd3",
