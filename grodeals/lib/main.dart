@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:grodeals/providers/supermarkets.dart';
+import 'package:grodeals/screens/category_items_screen.dart';
+import 'package:grodeals/screens/explore_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:grodeals/widgets/customappbar.dart';
 import 'package:grodeals/providers/listprovider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(key: UniqueKey()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({required Key key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -25,18 +27,12 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.orange,
             ),
-            home: const Scaffold(
-                appBar: CustomAppBar(
-                  height: 50,
-                ),
-                body: Center(
-                  child: RandomWords(),
-                ))));
+            home: ExploreScreen()));
   }
 }
 
 class RandomWords extends StatefulWidget {
-  const RandomWords({Key? key}) : super(key: key);
+  const RandomWords({required Key key}) : super(key: key);
 
   @override
   State<RandomWords> createState() => _RandomWordsState();

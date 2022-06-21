@@ -5,8 +5,8 @@ import 'package:grodeals/widgets/shoppinglist.dart';
 import 'package:grodeals/widgets/suggestedmarketslist.dart';
 
 class CustomShoppingList extends StatefulWidget {
-  const CustomShoppingList({
-    Key? key,
+  CustomShoppingList({
+    required Key key,
   }) : super(key: key);
 
   @override
