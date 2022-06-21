@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
 import 'package:grodeals/providers/listprovider.dart';
 import 'package:grodeals/screens/shopping_list.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
@@ -19,14 +16,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(actions: <Widget>[
       Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Container(
+        child: SizedBox(
             height: 150.0,
             width: 30.0,
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        const CustomShoppingList()));
+                        CustomShoppingList(key: UniqueKey())));
               },
               child: Stack(
                 children: <Widget>[
