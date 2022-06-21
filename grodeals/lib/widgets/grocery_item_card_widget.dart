@@ -4,7 +4,7 @@ import 'package:grodeals/models/grocery_item.dart';
 import 'package:grodeals/styles/colors.dart';
 
 class GroceryItemCardWidget extends StatelessWidget {
-  GroceryItemCardWidget(
+  const GroceryItemCardWidget(
       {Key? key, required this.item, required this.heroSuffix})
       : super(key: key);
   final GroceryItem item;
@@ -12,7 +12,7 @@ class GroceryItemCardWidget extends StatelessWidget {
 
   final double width = 174;
   final double height = 250;
-  final Color borderColor = Color(0xffE2E2E2);
+  final Color borderColor = const Color(0xffE2E2E2);
   final double borderRadius = 18;
 
   @override
@@ -56,9 +56,9 @@ class GroceryItemCardWidget extends StatelessWidget {
               text: item.description,
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: Color(0xFF7C7C7C),
+              color: const Color(0xFF7C7C7C),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -68,7 +68,7 @@ class GroceryItemCardWidget extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
-                Spacer(),
+                const Spacer(),
                 addWidget()
               ],
             )
@@ -89,7 +89,7 @@ class GroceryItemCardWidget extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(17),
           color: AppColors.primaryColor),
-      child: Center(
+      child: const Center(
         child: Icon(
           Icons.add,
           color: Colors.white,

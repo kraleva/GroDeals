@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grodeals/providers/listprovider.dart';
+import 'package:grodeals/providers/suggestedproduct.dart';
 
 class Supermarket {
   final String title;
@@ -11,7 +11,7 @@ class Supermarket {
   final Map<String, double> reducedPricesOfProducts;
   final Map<String, double> originalPricesOfProducts;
   final Map<String, bool> reducedProduct;
-  final Map<String, List<ListItem>> suggestions;
+  final Map<String, List<Product>> suggestions;
 
   Supermarket(
       {required this.title,
@@ -98,26 +98,7 @@ class SupermarketProvider with ChangeNotifier {
           "prd5": false
         },
         suggestions: {
-          "prd2": [
-            ListItem(
-                title: "Ceramont (der Cremige)",
-                id: "prd3",
-                quantity: 1,
-                available: true,
-                category: "Soft cheese"),
-            ListItem(
-                title: "Weichkase (Ja)",
-                id: "prd4",
-                quantity: 1,
-                available: true,
-                category: "Soft cheese"),
-            ListItem(
-                title: "Brie (Ja)",
-                id: "prd5",
-                quantity: 1,
-                available: true,
-                category: "Soft cheese"),
-          ]
+          "prd2": suggestedItems
         })
   };
 
