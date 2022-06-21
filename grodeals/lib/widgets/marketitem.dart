@@ -23,11 +23,11 @@ class SupermarketItem extends StatelessWidget {
               )),
           Align(
               alignment: const Alignment(0.6, 0.0),
-              child: Text(supermarket.distance.toString(),
+              child: Text("${supermarket.distance.toString()} km",
                   style: const TextStyle(color: Colors.white))),
           Align(
               alignment: const Alignment(0.3, 0.0),
-              child: Text(supermarket.price.toString(),
+              child: Text("${supermarket.price.toString()} €",
                   style: const TextStyle(color: Colors.white70))),
           Align(
               alignment: Alignment.centerRight,

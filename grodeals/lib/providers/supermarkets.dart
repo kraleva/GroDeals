@@ -63,6 +63,13 @@ class SupermarketProvider with ChangeNotifier {
     return 0.00;
   }
 
+  double getDistance(String id) {
+    if (_supermarkets.keys.contains(id)) {
+      return _supermarkets[id]!.distance;
+    }
+    return 0.00;
+  }
+
   Supermarket? getSupermarket(String id) {
     return _supermarkets[id];
   }
@@ -74,7 +81,6 @@ class SupermarketProvider with ChangeNotifier {
         unavailable.add(key);
       }
     });
-    print(unavailable);
     return unavailable;
   }
 
