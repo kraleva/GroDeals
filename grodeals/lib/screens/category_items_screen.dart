@@ -41,7 +41,7 @@ class CategoryItemsScreen extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.only(right: 25),
               child: const Icon(
-                Icons.sort,
+                Icons.shopping_cart,
                 color: Colors.black,
               ),
             ),
