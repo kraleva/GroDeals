@@ -22,8 +22,8 @@ class CategoryItemsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           child: Container(
-            padding: EdgeInsets.only(left: 25),
-            child: Icon(
+            padding: const EdgeInsets.only(left: 25),
+            child: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             ),
@@ -39,16 +39,16 @@ class CategoryItemsScreen extends StatelessWidget {
               );
             },
             child: Container(
-              padding: EdgeInsets.only(right: 25),
-              child: Icon(
-              Icons.shopping_cart,
-              color: Colors.black,
-            ),
+              padding: const EdgeInsets.only(right: 25),
+              child: const Icon(
+                Icons.shopping_cart,
+                color: Colors.black,
+              ),
             ),
           ),
         ],
         title: Container(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 25,
           ),
           child: AppText(
@@ -61,8 +61,9 @@ class CategoryItemsScreen extends StatelessWidget {
       ),
       body: StaggeredGridView.count(
         crossAxisCount: 4,
-        staggeredTiles:
-            beverages.map<StaggeredTile>((_) => StaggeredTile.fit(2)).toList(),
+        staggeredTiles: beverages
+            .map<StaggeredTile>((_) => const StaggeredTile.fit(2))
+            .toList(),
         mainAxisSpacing: 3.0,
         crossAxisSpacing: 0.0,
         // I only need two card horizontally

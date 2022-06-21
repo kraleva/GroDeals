@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import "package:grodeals/providers/supermarkets.dart";
 import 'package:grodeals/widgets/shoppinglist_supermarket.dart';
 import 'package:provider/provider.dart';
@@ -46,9 +47,12 @@ class _MarketListState extends State<MarketList> {
                   ))
                 : Expanded(
                     child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                            "Price ${supermarkets.getPrice(widget.supermarketid).toString()}"))),
+                    alignment: const Alignment(0.90, -0.99),
+                    child: Text(
+                        "Price ${supermarkets.getPrice(widget.supermarketid).toString()} €\nDistance ${supermarkets.getDistance(widget.supermarketid).toString()} km",
+                        style: GoogleFonts.acme(
+                            color: Colors.white, fontSize: 20)),
+                  )),
             Expanded(
                 child: ReplacecmentItemsList(
               supermarketid: widget.supermarketid,
