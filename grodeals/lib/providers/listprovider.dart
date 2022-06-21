@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grodeals/providers/product.dart';
+import 'package:grodeals/providers/suggestedproduct.dart';
 
 class ListItem {
   final String title;
