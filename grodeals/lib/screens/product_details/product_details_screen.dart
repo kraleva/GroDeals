@@ -36,7 +36,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           },
           child: Container(
             padding: EdgeInsets.only(left: 25),
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             ),
@@ -47,7 +47,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CustomShoppingList(key: UniqueKey())),
+                MaterialPageRoute(
+                    builder: (context) => CustomShoppingList(key: UniqueKey())),
               );
             },
             child: Container(
