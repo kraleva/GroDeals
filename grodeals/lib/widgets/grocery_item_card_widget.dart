@@ -66,6 +66,19 @@ class GroceryItemCardWidget extends StatelessWidget {
             ),
             Row(
               children: [
+                (supermarkets.getLowestPriceForProduct(item.id)[1] == true)
+                    ? Text(
+                        supermarkets
+                            .getLowestPriceForProduct(item.id)[2]
+                            .toString(),
+                        style: const TextStyle(
+                            decoration: TextDecoration.lineThrough,
+                            color: Colors.black,
+                            fontSize: 18),
+                      )
+                    : const SizedBox(
+                        width: 0,
+                      ),
                 AppText(
                   text:
                       "\$${supermarkets.getLowestPriceForProduct(item.id)[0].toStringAsFixed(2)}",

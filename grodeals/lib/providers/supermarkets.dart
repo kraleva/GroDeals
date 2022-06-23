@@ -55,7 +55,7 @@ class SupermarketProvider with ChangeNotifier {
           "prd4": 1.29,
           "prd5": 1.29,
           "prd6": 4.99,
-          "prd7": 2.50,
+          "prd7": 1.99,
           "prd8": 1.50,
           "prd9": 15.99,
           "prd10": 1.50,
@@ -211,18 +211,21 @@ class SupermarketProvider with ChangeNotifier {
   //returns a list of values, 1st value is minimal price, the second if it is reduced
   List getLowestPriceForProduct(String productid) {
     double? minimalPrice = double.infinity;
+    double? nonReducedlPrice = double.infinity;
     bool? reduced = false;
     _supermarkets.forEach((key, value) {
       if (value.reducedPricesOfProducts[productid]! < minimalPrice!) {
         minimalPrice = value.reducedPricesOfProducts[productid];
+        nonReducedlPrice = value.originalPricesOfProducts[productid];
         reduced = true;
       }
       if (value.originalPricesOfProducts[productid]! <= minimalPrice!) {
         minimalPrice = value.originalPricesOfProducts[productid];
         reduced = false;
+        nonReducedlPrice = minimalPrice;
       }
     });
-    return [minimalPrice, reduced];
+    return [minimalPrice, reduced, nonReducedlPrice];
   }
 
   Map<String, String> getPricesAsText(String id, bool reduced) {
