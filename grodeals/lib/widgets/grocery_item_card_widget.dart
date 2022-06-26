@@ -4,6 +4,7 @@ import 'package:grodeals/models/grocery_item.dart';
 import 'package:grodeals/styles/colors.dart';
 import "package:grodeals/providers/supermarkets.dart";
 import 'package:provider/provider.dart';
+import 'package:grodeals/providers/listprovider.dart';
 
 class GroceryItemCardWidget extends StatelessWidget {
   const GroceryItemCardWidget(
@@ -86,7 +87,24 @@ class GroceryItemCardWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
                 const Spacer(),
-                addWidget()
+                GestureDetector(
+                  onTap: () => {
+                    Provider.of<ListProvider>(context, listen: false)
+                        .addItemToList(item),
+                    showDialog(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                              title: const Text('Item added'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'OK'),
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ))
+                  },
+                  child: addWidget(),
+                )
               ],
             )
           ],
