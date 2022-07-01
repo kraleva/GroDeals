@@ -1,16 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:grodeals/common_widgets/app_text.dart';
+import 'package:grodeals/models/category_item.dart';
 import 'package:grodeals/models/grocery_item.dart';
 import 'package:grodeals/screens/product_details/product_details_screen.dart';
 import 'package:grodeals/screens/shopping_list.dart';
 import 'package:grodeals/widgets/grocery_item_card_widget.dart';
 
 class CategoryItemsScreen extends StatelessWidget {
-  const CategoryItemsScreen({Key? key}) : super(key: key);
+  final CategoryItem categoryItem;
+
+  const CategoryItemsScreen({Key? key, required this.categoryItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<GroceryItem> selected = fruitAndVegetables;
+    if(categoryItem.id ==1) {
+      selected=fruitAndVegetables;
+    }
+    if(categoryItem.id ==2) {
+      selected=cookingOil;
+    }
+    if(categoryItem.id == 3) {
+      selected=meatAndFish;
+    }
+    if(categoryItem.id == 4) {
+      selected=bakery;
+    }
+    if(categoryItem.id == 5) {
+      selected=diaryEggs;
+    }
+    if(categoryItem.id == 6) {
+      selected=beverages;
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -53,7 +76,7 @@ class CategoryItemsScreen extends StatelessWidget {
           ),
           child: AppText(
             key: UniqueKey(),
-            text: "Beverages",
+            text: categoryItem.name,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
@@ -61,13 +84,13 @@ class CategoryItemsScreen extends StatelessWidget {
       ),
       body: StaggeredGridView.count(
         crossAxisCount: 4,
-        staggeredTiles: beverages
+        staggeredTiles: selected
             .map<StaggeredTile>((_) => const StaggeredTile.fit(2))
             .toList(),
         mainAxisSpacing: 3.0,
         crossAxisSpacing: 0.0,
         // I only need two card horizontally
-        children: beverages.asMap().entries.map<Widget>((e) {
+        children: selected.asMap().entries.map<Widget>((e) {
           GroceryItem groceryItem = e.value;
           return GestureDetector(
             onTap: () {
