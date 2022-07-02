@@ -15,11 +15,18 @@ class _ShoppingListWithRemoveState extends State<ShoppingListWithRemove> {
   Widget build(BuildContext context) {
     final products = Provider.of<ListProvider>(context);
     return ListView.builder(
-      padding: EdgeInsets.zero,
+      padding: const EdgeInsets.all(10),
       itemBuilder: (ctx, i) => Container(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         height: 70,
         width: double.maxFinite,
+        decoration: BoxDecoration(
+          border: Border.all(
+              color: Colors.black, //color of border
+              width: 1, //width of border
+            ),
+          borderRadius: BorderRadius.circular(5)
+        ), 
         child: Dismissible(
           key: Key(products.items.values.toList()[i].id),
           direction: DismissDirection.endToStart,

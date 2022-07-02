@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grodeals/common_widgets/app_button.dart';
 import 'package:grodeals/common_widgets/app_text.dart';
 import 'package:grodeals/models/grocery_item.dart';
+import 'package:grodeals/widgets/customappbar.dart';
 import 'package:grodeals/widgets/item_counter_widget.dart';
 
 import '../shopping_list.dart';
@@ -25,122 +26,111 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Container(
-            padding: EdgeInsets.only(left: 25),
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-          ),
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CustomShoppingList(key: UniqueKey())),
-              );
-            },
-            child: Container(
-              padding: EdgeInsets.only(right: 25),
-              child: Icon(
-                Icons.shopping_cart,
-                color: Colors.black,
-              ),
-            ),
-          ),
-        ],
-        title: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 25,
-          ),
-          child: AppText(
-            text: "Beverages",
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
+      appBar: const CustomAppBar(
+          height: 50,
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            getImageHeaderWidget(),
+      body: 
+        Column(
+          children: <Widget> [
+            getHeader(context),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: SafeArea(
                 child: Column(
                   children: [
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(
-                        widget.groceryItem.name,
-                        style: const TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: AppText(
-                        text: widget.groceryItem.description,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: const Color(0xff7C7C7C),
-                      ),
-                      trailing: FavoriteToggleIcon(),
-                    ),
-                    const Spacer(),
-                    Row(
-                      children: [
-                        ItemCounterWidget(
-                          onAmountChanged: (newAmount) {
-                            setState(() {
-                              amount = newAmount;
-                            });
-                          },
+                    getImageHeaderWidget(),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Column(
+                          children: [
+                            ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              title: Text(
+                                widget.groceryItem.name,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: AppText(
+                                text: widget.groceryItem.description,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xff7C7C7C),
+                              ),
+                              trailing: FavoriteToggleIcon(),
+                            ),
+                            const Spacer(),
+                            Row(
+                              children: [
+                                ItemCounterWidget(
+                                  onAmountChanged: (newAmount) {
+                                    setState(() {
+                                      amount = newAmount;
+                                    });
+                                  },
+                                ),
+                                const Spacer(),
+                                Text(
+                                  "\$${getTotalPrice().toStringAsFixed(2)}",
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ],
+                            ),
+                            const Spacer(),
+                            const Divider(thickness: 1),
+                            getProductDataRowWidget("Product Details"),
+                            const Divider(thickness: 1),
+                            getProductDataRowWidget("Nutritions",
+                                customWidget: nutritionWidget()),
+                            const Divider(thickness: 1),
+                            getProductDataRowWidget(
+                              "Review",
+                              customWidget: ratingWidget(),
+                            ),
+                            const Spacer(),
+                            AppButton(
+                              label: "Add To Basket",
+                              onPressed: () {
+                                print("test");
+                              },
+                            ),
+                            const Spacer(),
+                          ],
                         ),
-                        const Spacer(),
-                        Text(
-                          "\$${getTotalPrice().toStringAsFixed(2)}",
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
+                      ),
                     ),
-                    const Spacer(),
-                    const Divider(thickness: 1),
-                    getProductDataRowWidget("Product Details"),
-                    const Divider(thickness: 1),
-                    getProductDataRowWidget("Nutritions",
-                        customWidget: nutritionWidget()),
-                    const Divider(thickness: 1),
-                    getProductDataRowWidget(
-                      "Review",
-                      customWidget: ratingWidget(),
-                    ),
-                    const Spacer(),
-                    AppButton(
-                      label: "Add To Basket",
-                      onPressed: () {
-                        print("test");
-                      },
-                    ),
-                    const Spacer(),
                   ],
                 ),
               ),
-            ),
+            )
           ],
         ),
-      ),
+    );
+  }
+
+  Widget getHeader(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          children: [
+            Center(child:AppText(
+              key: UniqueKey(),
+              text: widget.groceryItem.name,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              textAlign: TextAlign.center
+            ),)
+          ]
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+      ],
     );
   }
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:grodeals/providers/listprovider.dart';
 import 'package:grodeals/screens/shopping_list.dart';
 
+import '../common_widgets/app_text.dart';
+
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
 
@@ -13,7 +15,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final list = ListProvider();
-    return AppBar(actions: <Widget>[
+    return AppBar(
+      centerTitle: true,
+      title: Center(
+        child: Text(
+          "GroDeals",
+          key: UniqueKey(),
+          style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+        ),
+      ),
+      actions: <Widget>[
       Padding(
         padding: const EdgeInsets.all(10.0),
         child: SizedBox(
@@ -58,8 +69,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ],
               ),
             )),
-      )
-    ]);
+        )
+      ],
+    );
   }
 
   @override

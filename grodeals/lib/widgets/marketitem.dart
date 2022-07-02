@@ -37,7 +37,7 @@ class SupermarketItem extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          MarketList(supermarketid: supermarket.id)));
+                          MarketList(supermarketid: supermarket.id, supermarket: supermarket)));
                 },
               )),
         ]));

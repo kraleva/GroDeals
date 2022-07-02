@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:grodeals/widgets/shoppinglist.dart';
 import 'package:grodeals/widgets/suggestedmarketslist.dart';
 
+import '../common_widgets/app_text.dart';
+import '../widgets/customappbar.dart';
+
 class CustomShoppingList extends StatefulWidget {
   const CustomShoppingList({
     required Key key,
@@ -17,34 +20,73 @@ class _CustomShoppingListState extends State<CustomShoppingList> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _scaffoldKey,
-        backgroundColor: Theme.of(context).primaryColor,
-        appBar: AppBar(
-          elevation: 0,
-          title: const Text("GroDeals Shopping List"),
+        //backgroundColor: Theme.of(context).primaryColor,
+        appBar: const CustomAppBar(
+          height: 50,
+      ),
+      body: 
+        Column(children: <Widget> [
+          getHeader(context),
+          Expanded(
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //mainAxisSize: MainAxisSize.min,
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                    padding: const EdgeInsets.only(bottom: 18),
+                    child: const Align(
+                        alignment: Alignment.topCenter,
+                        child: Text("Items in List",
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                    )))),
+                Expanded(
+                    child: ShoppingListWithRemove(
+                  key: UniqueKey(),
+                )),
+                Container(
+                    padding: const EdgeInsets.only(bottom: 18),
+                    child: const Align(
+                        alignment: Alignment.topCenter,
+                        child: Text("Recommended supermarkets",
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                    )))),
+                Expanded(
+                    child: SuggestedMarketsList(
+                  key: UniqueKey(),
+                ))
+              ],
+            ),
+          )
+        ])
+    );
+  }
+
+  Widget getHeader(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(
+          height: 20,
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        Row(
           children: [
-            Expanded(
-                child: ShoppingListWithRemove(
+            Center(child: AppText(
               key: UniqueKey(),
-            )),
-            Container(
-                padding: const EdgeInsets.only(bottom: 18),
-                child: const Align(
-                    alignment: Alignment.topCenter,
-                    child: Text("Recommended supermarkets",
-                        style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white)))),
-            Expanded(
-                child: SuggestedMarketsList(
-              key: UniqueKey(),
-            ))
-          ],
-        ));
+              text: "Shopping List",
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              textAlign: TextAlign.center
+            ),)
+          ]
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+      ],
+    );
   }
 }
