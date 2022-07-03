@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grodeals/models/grocery_item.dart';
 import 'package:grodeals/providers/suggestedproduct.dart';
 
 class ListItem {
@@ -91,6 +92,18 @@ class ListProvider with ChangeNotifier {
             quantity: 1,
             available: true,
             category: product.category));
+    notifyListeners();
+  }
+
+  void addItemToList(GroceryItem item) {
+    _items.putIfAbsent(
+        item.id,
+        () => ListItem(
+            title: item.name,
+            id: item.id,
+            quantity: 1,
+            available: true,
+            category: item.category));
     notifyListeners();
   }
 }

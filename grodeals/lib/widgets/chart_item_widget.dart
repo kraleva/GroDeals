@@ -52,10 +52,10 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: AppColors.darkGrey),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
-                Spacer(),
+                const Spacer(),
                 ItemCounterWidget(
                   onAmountChanged: (newAmount) {
                     setState(() {
@@ -67,12 +67,12 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
             ),
             Column(
               children: [
-                Icon(
+                const Icon(
                   Icons.close,
                   color: AppColors.darkGrey,
                   size: 25,
                 ),
-                Spacer(
+                const Spacer(
                   flex: 5,
                 ),
                 SizedBox(
