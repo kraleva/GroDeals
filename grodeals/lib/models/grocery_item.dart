@@ -111,3 +111,20 @@ var beverages = [
       category: "cold-bevarages sparkling",
       imagePath: "assets/images/beverages_images/pepsi.png"),
 ];
+
+var suggestedItems = [
+  GroceryItem(
+      id: "prd13",
+      name: "Ceramont (der Sahnige)",
+      description: "cremige Weichkäse",
+      price: 1.99,
+      category: "soft cheese",
+      imagePath: "assets/images/beverages_images/diet_coke.png"),
+  GroceryItem(
+      id: "prd14",
+      name: "Ceramont (der Cremige)",
+      description: "cremige Topkäse",
+      price: 1.99,
+      category: "soft cheese",
+      imagePath: "assets/images/beverages_images/sprite.png"),
+];
