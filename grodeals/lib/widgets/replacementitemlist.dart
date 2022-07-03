@@ -10,10 +10,10 @@ class ReplacecmentItemsList extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<ReplacecmentItemsList> createState() => _SuggestedMarketsListState();
+  State<ReplacecmentItemsList> createState() => _ReplacementItemsListState();
 }
 
-class _SuggestedMarketsListState extends State<ReplacecmentItemsList> {
+class _ReplacementItemsListState extends State<ReplacecmentItemsList> {
   @override
   Widget build(BuildContext context) {
     final supermarkets = Provider.of<SupermarketProvider>(context);
@@ -37,6 +37,7 @@ class _SuggestedMarketsListState extends State<ReplacecmentItemsList> {
             : const SizedBox(height: 1),
         for (var unavailable in supermarketUnavailable)
           ReplacementItem(
+            supermarketid: widget.supermarketid,
             category: products.getCategory(unavailable),
           )
       ],

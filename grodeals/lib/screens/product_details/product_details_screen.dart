@@ -35,7 +35,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             Navigator.pop(context);
           },
           child: Container(
-            padding: EdgeInsets.only(left: 25),
+            padding: const EdgeInsets.only(left: 25),
             child: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
@@ -52,8 +52,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               );
             },
             child: Container(
-              padding: EdgeInsets.only(right: 25),
-              child: Icon(
+              padding: const EdgeInsets.only(right: 25),
+              child: const Icon(
                 Icons.shopping_cart,
                 color: Colors.black,
               ),
@@ -61,10 +61,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ),
         ],
         title: Container(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 25,
           ),
-          child: AppText(
+          child: const AppText(
             text: "Beverages",
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -93,7 +93,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         fontWeight: FontWeight.w600,
                         color: const Color(0xff7C7C7C),
                       ),
-                      trailing: FavoriteToggleIcon(),
+                      trailing: const FavoriteToggleIcon(),
                     ),
                     const Spacer(),
                     Row(

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grodeals/screens/suggestion_items_screen.dart';
 
 class ReplacementItem extends StatelessWidget {
   final String category;
-  const ReplacementItem({Key? key, required this.category}) : super(key: key);
+  final String supermarketid;
+  const ReplacementItem(
+      {Key? key, required this.category, required this.supermarketid})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,10 @@ class ReplacementItem extends StatelessWidget {
                 tooltip: 'Choose Product',
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => Text("test")));
+                      builder: (BuildContext context) => SuggestionsItemsScreen(
+                            category: category,
+                            supermarketid: supermarketid,
+                          )));
                 },
               )),
         ]));
@@ -39,6 +46,6 @@ class ReplacementItem extends StatelessWidget {
   }
 
   Color getColor() {
-    return Color.fromARGB(255, 255, 212, 112);
+    return const Color.fromARGB(255, 255, 212, 112);
   }
 }

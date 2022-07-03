@@ -251,4 +251,18 @@ class SupermarketProvider with ChangeNotifier {
     }
     return pricesAsText;
   }
+
+  String getLowestPriceForSupermarket(String supermarketid, String productid) {
+    if (_supermarkets.keys.contains(supermarketid)) {
+      if (_supermarkets[supermarketid]!
+          .reducedPricesOfProducts
+          .keys
+          .contains(productid)) {
+        return _supermarkets[supermarketid]!
+            .reducedPricesOfProducts[productid]
+            .toString();
+      }
+    }
+    return "";
+  }
 }

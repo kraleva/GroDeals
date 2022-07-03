@@ -17,7 +17,7 @@ class ChartItemWidget extends StatefulWidget {
 class _ChartItemWidgetState extends State<ChartItemWidget> {
   final double height = 110;
 
-  final Color borderColor = Color(0xffE2E2E2);
+  final Color borderColor = const Color(0xffE2E2E2);
 
   final double borderRadius = 18;
 
@@ -27,7 +27,7 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         vertical: 30,
       ),
       child: IntrinsicHeight(
@@ -44,7 +44,7 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 AppText(
@@ -84,7 +84,7 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                     textAlign: TextAlign.right,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             )
           ],

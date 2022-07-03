@@ -45,11 +45,11 @@ class SupermarketItem extends StatelessWidget {
 
   Color getColor() {
     if (supermarket.title == "") {
-      return Color.fromARGB(255, 255, 152, 0);
+      return const Color.fromARGB(255, 255, 152, 0);
     } else if (supermarket.allAvailable) {
-      return Color.fromARGB(255, 255, 212, 112);
+      return const Color.fromARGB(255, 255, 212, 112);
     } else {
-      return Color.fromARGB(255, 212, 186, 155);
+      return const Color.fromARGB(255, 212, 186, 155);
     }
   }
 }
