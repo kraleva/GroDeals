@@ -115,16 +115,16 @@ var beverages = [
 var suggestedItems = [
   GroceryItem(
       id: "prd13",
-      name: "Ceramont (der Sahnige)",
-      description: "cremige Weichkäse",
+      name: "Ceramont (der Cremige)",
+      description: "Ceramont (der Cremige)",
       price: 1.99,
       category: "soft cheese",
-      imagePath: "assets/images/beverages_images/diet_coke.png"),
+      imagePath: "images/cheese_images/ceramont.png"),
   GroceryItem(
       id: "prd14",
-      name: "Ceramont (der Cremige)",
-      description: "cremige Topkäse",
+      name: "Weichkase (Ja)",
+      description: "Weichkase (Ja)",
       price: 1.99,
       category: "soft cheese",
-      imagePath: "assets/images/beverages_images/sprite.png"),
+      imagePath: "images/cheese_images/ja.png"),
 ];

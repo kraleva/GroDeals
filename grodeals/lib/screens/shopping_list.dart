@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grodeals/widgets/shoppinglist.dart';
 import 'package:grodeals/widgets/suggestedmarketslist.dart';
+import 'package:grodeals/screens/explore_screen.dart';
 
 class CustomShoppingList extends StatefulWidget {
   const CustomShoppingList({

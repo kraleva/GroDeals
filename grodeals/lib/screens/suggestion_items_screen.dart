@@ -2,15 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:grodeals/common_widgets/app_text.dart';
 import 'package:grodeals/models/grocery_item.dart';
+import 'package:grodeals/providers/supermarkets.dart';
 import 'package:grodeals/screens/product_details/product_details_screen.dart';
 import 'package:grodeals/screens/shopping_list.dart';
-import 'package:grodeals/widgets/grocery_item_card_widget.dart';
+import 'package:grodeals/widgets/suggestion_item_card_widget.dart';
+import 'package:provider/provider.dart';
 
-class CategoryItemsScreen extends StatelessWidget {
-  const CategoryItemsScreen({Key? key}) : super(key: key);
+class SuggestionsItemsScreen extends StatelessWidget {
+  final String category;
+  final String supermarketid;
+  final String unavailableid;
+  const SuggestionsItemsScreen(
+      {Key? key,
+      required this.category,
+      required this.supermarketid,
+      required this.unavailableid})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final supermarkets = Provider.of<SupermarketProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -61,7 +72,7 @@ class CategoryItemsScreen extends StatelessWidget {
       ),
       body: StaggeredGridView.count(
         crossAxisCount: 4,
-        staggeredTiles: beverages
+        staggeredTiles: suggestedItems
             .map<StaggeredTile>((_) => const StaggeredTile.fit(2))
             .toList(),
         mainAxisSpacing: 3.0,
@@ -75,9 +86,11 @@ class CategoryItemsScreen extends StatelessWidget {
             },
             child: Container(
               padding: const EdgeInsets.all(10),
-              child: GroceryItemCardWidget(
+              child: SuggestionItemCardWidget(
                 item: groceryItem,
-                heroSuffix: "suggestion_screen",
+                supermarket: supermarkets.getSupermarket(supermarketid),
+                unavailableid: unavailableid,
+                heroSuffix: "suggestions_screen",
               ),
             ),
           );

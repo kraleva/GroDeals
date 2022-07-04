@@ -21,13 +21,13 @@ class _ItemCounterWidgetState extends State<ItemCounterWidget> {
       children: [
         iconWidget(Icons.remove,
             iconColor: AppColors.darkGrey, onPressed: decrementAmount),
-        SizedBox(width: 18),
+        const SizedBox(width: 18),
         SizedBox(
             width: 30,
             child: Center(
                 child: getText(
                     text: amount.toString(), fontSize: 18, isBold: true))),
-        SizedBox(width: 18),
+        const SizedBox(width: 18),
         iconWidget(Icons.add,
             iconColor: AppColors.primaryColor, onPressed: incrementAmount)
       ],
@@ -66,7 +66,7 @@ class _ItemCounterWidgetState extends State<ItemCounterWidget> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(17),
           border: Border.all(
-            color: Color(0xffE2E2E2),
+            color: const Color(0xffE2E2E2),
           ),
         ),
         child: Center(

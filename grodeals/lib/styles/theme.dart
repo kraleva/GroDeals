@@ -4,7 +4,8 @@ import 'package:grodeals/styles/colors.dart';
 String gilroyFontFamily = "Gilroy";
 
 ThemeData themeData = ThemeData(
-  accentColor: AppColors.primaryColor,
   fontFamily: gilroyFontFamily,
   visualDensity: VisualDensity.adaptivePlatformDensity,
+  colorScheme:
+      ColorScheme.fromSwatch().copyWith(secondary: AppColors.primaryColor),
 );

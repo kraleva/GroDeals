@@ -2,6 +2,8 @@ import 'package:grodeals/providers/supermarkets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grodeals/screens/market_list.dart';
+import "package:grodeals/providers/listprovider.dart";
+import 'package:provider/provider.dart';
 
 class SupermarketItem extends StatelessWidget {
   final Supermarket supermarket;
@@ -10,6 +12,7 @@ class SupermarketItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final products = Provider.of<ListProvider>(context);
     return Container(
         height: 50,
         padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -36,8 +39,10 @@ class SupermarketItem extends StatelessWidget {
                 tooltip: 'Choose Supermarket',
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          MarketList(supermarketid: supermarket.id)));
+                      builder: (BuildContext context) => MarketList(
+                            supermarketid: supermarket.id,
+                            productids: products.items.keys.toList(),
+                          )));
                 },
               )),
         ]));
@@ -45,11 +50,11 @@ class SupermarketItem extends StatelessWidget {
 
   Color getColor() {
     if (supermarket.title == "") {
-      return Color.fromARGB(255, 255, 152, 0);
+      return const Color.fromARGB(255, 255, 152, 0);
     } else if (supermarket.allAvailable) {
-      return Color.fromARGB(255, 255, 212, 112);
+      return const Color.fromARGB(255, 255, 212, 112);
     } else {
-      return Color.fromARGB(255, 212, 186, 155);
+      return const Color.fromARGB(255, 212, 186, 155);
     }
   }
 }
