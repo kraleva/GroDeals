@@ -3,6 +3,8 @@ import 'package:grodeals/common_widgets/app_button.dart';
 import 'package:grodeals/common_widgets/app_text.dart';
 import 'package:grodeals/models/grocery_item.dart';
 import 'package:grodeals/widgets/item_counter_widget.dart';
+import 'package:provider/provider.dart';
+import 'package:grodeals/providers/listprovider.dart';
 
 import '../shopping_list.dart';
 import 'favourite_toggle_icon_widget.dart';
@@ -117,22 +119,31 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                     const Spacer(),
                     const Divider(thickness: 1),
-                    getProductDataRowWidget("Product Details"),
-                    const Divider(thickness: 1),
-                    getProductDataRowWidget("Nutritions",
-                        customWidget: nutritionWidget()),
-                    const Divider(thickness: 1),
                     getProductDataRowWidget(
                       "Review",
                       customWidget: ratingWidget(),
                     ),
                     const Spacer(),
-                    AppButton(
+                    Expanded(
+                        child: AppButton(
                       label: "Add To Basket",
                       onPressed: () {
-                        print("test");
+                        Provider.of<ListProvider>(context, listen: false)
+                            .addItemToList(widget.groceryItem);
+                        showDialog(
+                            context: context,
+                            builder: (_) => AlertDialog(
+                                  title: const Text('Item added'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'OK'),
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ));
                       },
-                    ),
+                    )),
                     const Spacer(),
                   ],
                 ),

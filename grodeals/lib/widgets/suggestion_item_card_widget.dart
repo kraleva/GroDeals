@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:grodeals/common_widgets/app_text.dart';
 import 'package:grodeals/models/grocery_item.dart';
-import 'package:grodeals/providers/suggestedproduct.dart';
 import 'package:grodeals/styles/colors.dart';
 import "package:grodeals/providers/supermarkets.dart";
 import 'package:provider/provider.dart';
 import 'package:grodeals/providers/listprovider.dart';
+import 'package:grodeals/screens/market_list.dart';
 
 class SuggestionItemCardWidget extends StatelessWidget {
   const SuggestionItemCardWidget(
       {Key? key,
       required this.item,
       required this.heroSuffix,
-      required this.supermarket})
+      required this.supermarket,
+      required this.unavailableid})
       : super(key: key);
   final GroceryItem item;
+  final String unavailableid;
   final Supermarket? supermarket;
   final String heroSuffix;
 
@@ -82,13 +84,29 @@ class SuggestionItemCardWidget extends StatelessWidget {
                   onTap: () => {
                     Provider.of<ListProvider>(context, listen: false)
                         .addItemToList(item),
+                    Provider.of<ListProvider>(context, listen: false)
+                        .removeItem(unavailableid),
                     showDialog(
                         context: context,
                         builder: (_) => AlertDialog(
                               title: const Text('Item added'),
                               actions: <Widget>[
                                 TextButton(
-                                  onPressed: () => Navigator.pop(context, 'OK'),
+                                  onPressed: () => Navigator.of(context)
+                                      .push(MaterialPageRoute(
+                                    builder: (BuildContext context) {
+                                      return MarketList(
+                                        key: UniqueKey(),
+                                        productids: Provider.of<ListProvider>(
+                                                context,
+                                                listen: false)
+                                            .items
+                                            .keys
+                                            .toList(),
+                                        supermarketid: supermarket!.id,
+                                      );
+                                    },
+                                  )),
                                   child: const Text('OK'),
                                 ),
                               ],

@@ -5,8 +5,12 @@ import 'package:grodeals/screens/suggestion_items_screen.dart';
 class ReplacementItem extends StatelessWidget {
   final String category;
   final String supermarketid;
+  final String unavailableid;
   const ReplacementItem(
-      {Key? key, required this.category, required this.supermarketid})
+      {Key? key,
+      required this.category,
+      required this.supermarketid,
+      required this.unavailableid})
       : super(key: key);
 
   @override
@@ -30,9 +34,9 @@ class ReplacementItem extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => SuggestionsItemsScreen(
-                            category: category,
-                            supermarketid: supermarketid,
-                          )));
+                          category: category,
+                          supermarketid: supermarketid,
+                          unavailableid: unavailableid)));
                 },
               )),
         ]));

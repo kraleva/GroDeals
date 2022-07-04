@@ -46,7 +46,9 @@ class SupermarketProvider with ChangeNotifier {
           "prd9": true,
           "prd10": true,
           "prd11": true,
-          "prd12": true
+          "prd12": true,
+          "prd13": true,
+          "prd14": true
         },
         reducedPricesOfProducts: {
           "prd1": 2.01,
@@ -60,7 +62,9 @@ class SupermarketProvider with ChangeNotifier {
           "prd9": 15.99,
           "prd10": 1.50,
           "prd11": 4.99,
-          "prd12": 4.99
+          "prd12": 4.99,
+          "prd13": 2.99,
+          "prd14": 1.99
         },
         originalPricesOfProducts: {
           "prd1": 2.99,
@@ -74,7 +78,9 @@ class SupermarketProvider with ChangeNotifier {
           "prd9": 15.99,
           "prd10": 2.50,
           "prd11": 4.99,
-          "prd12": 4.99
+          "prd12": 4.99,
+          "prd13": 2.99,
+          "prd14": 1.99
         },
         reducedProduct: {
           "prd1": true,
@@ -88,7 +94,9 @@ class SupermarketProvider with ChangeNotifier {
           "prd9": false,
           "prd10": true,
           "prd11": false,
-          "prd12": false
+          "prd12": false,
+          "prd13": false,
+          "prd14": false
         },
         suggestions: {}),
     "sup2": Supermarket(
@@ -109,7 +117,9 @@ class SupermarketProvider with ChangeNotifier {
           "prd9": true,
           "prd10": true,
           "prd11": true,
-          "prd12": true
+          "prd12": true,
+          "prd13": true,
+          "prd14": true
         },
         reducedPricesOfProducts: {
           "prd1": 1.99,
@@ -123,7 +133,9 @@ class SupermarketProvider with ChangeNotifier {
           "prd9": 15.99,
           "prd10": 1.50,
           "prd11": 4.99,
-          "prd12": 4.99
+          "prd12": 4.99,
+          "prd13": 2.99,
+          "prd14": 1.99
         },
         originalPricesOfProducts: {
           "prd1": 2.99,
@@ -137,7 +149,9 @@ class SupermarketProvider with ChangeNotifier {
           "prd9": 15.99,
           "prd10": 2.50,
           "prd11": 4.99,
-          "prd12": 4.99
+          "prd12": 4.99,
+          "prd13": 2.99,
+          "prd14": 1.99
         },
         reducedProduct: {
           "prd1": true,
@@ -151,7 +165,9 @@ class SupermarketProvider with ChangeNotifier {
           "prd9": false,
           "prd10": true,
           "prd11": false,
-          "prd12": false
+          "prd12": false,
+          "prd13": false,
+          "prd14": false
         },
         suggestions: {
           "prd2": suggestedProducts
@@ -184,11 +200,15 @@ class SupermarketProvider with ChangeNotifier {
     return _supermarkets[id];
   }
 
-  List<String> getUnavailable(String id) {
+  List<String> getUnavailable(String id, List<String> productids) {
     List<String> unavailable = [];
     _supermarkets[id]!.availabilityofproducts.forEach((key, value) {
       if (value == false) {
-        unavailable.add(key);
+        // ignore: unrelated_type_equality_checks
+        var contained = productids.where((element) => element == key);
+        if (contained.isNotEmpty) {
+          unavailable.add(key);
+        }
       }
     });
     return unavailable;

@@ -11,8 +11,12 @@ import 'package:provider/provider.dart';
 class SuggestionsItemsScreen extends StatelessWidget {
   final String category;
   final String supermarketid;
+  final String unavailableid;
   const SuggestionsItemsScreen(
-      {Key? key, required this.category, required this.supermarketid})
+      {Key? key,
+      required this.category,
+      required this.supermarketid,
+      required this.unavailableid})
       : super(key: key);
 
   @override
@@ -85,6 +89,7 @@ class SuggestionsItemsScreen extends StatelessWidget {
               child: SuggestionItemCardWidget(
                 item: groceryItem,
                 supermarket: supermarkets.getSupermarket(supermarketid),
+                unavailableid: unavailableid,
                 heroSuffix: "suggestions_screen",
               ),
             ),

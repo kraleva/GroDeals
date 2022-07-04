@@ -18,8 +18,8 @@ class _ReplacementItemsListState extends State<ReplacecmentItemsList> {
   Widget build(BuildContext context) {
     final supermarkets = Provider.of<SupermarketProvider>(context);
     final products = Provider.of<ListProvider>(context);
-    final supermarketUnavailable =
-        supermarkets.getUnavailable(widget.supermarketid);
+    final supermarketUnavailable = supermarkets.getUnavailable(
+        widget.supermarketid, products.items.keys.toList());
     return ListView(
       padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
       children: <Widget>[
@@ -39,6 +39,7 @@ class _ReplacementItemsListState extends State<ReplacecmentItemsList> {
           ReplacementItem(
             supermarketid: widget.supermarketid,
             category: products.getCategory(unavailable),
+            unavailableid: unavailable,
           )
       ],
     );

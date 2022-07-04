@@ -161,7 +161,7 @@ class _ShoppingListForSupermarket extends State<ShoppingListForSupermarket> {
 
   Color getBackgroundColor(bool? available) {
     if (available == null) {
-      return const Color.fromARGB(179, 236, 236, 236);
+      return const Color.fromARGB(255, 255, 255, 255);
     } else if (available) {
       return const Color.fromARGB(255, 255, 255, 255);
     } else {
