@@ -104,6 +104,7 @@ class SuggestionItemCardWidget extends StatelessWidget {
                                             .keys
                                             .toList(),
                                         supermarketid: supermarket!.id,
+                                        supermarket: supermarket,
                                       );
                                     },
                                   )),

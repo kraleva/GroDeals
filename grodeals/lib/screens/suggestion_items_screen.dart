@@ -8,6 +8,8 @@ import 'package:grodeals/screens/shopping_list.dart';
 import 'package:grodeals/widgets/suggestion_item_card_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/customappbar.dart';
+
 class SuggestionsItemsScreen extends StatelessWidget {
   final String category;
   final String supermarketid;
@@ -23,54 +25,14 @@ class SuggestionsItemsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final supermarkets = Provider.of<SupermarketProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Container(
-            padding: const EdgeInsets.only(left: 25),
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-          ),
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CustomShoppingList(key: UniqueKey())),
-              );
-            },
-            child: Container(
-              padding: const EdgeInsets.only(right: 25),
-              child: const Icon(
-                Icons.shopping_cart,
-                color: Colors.black,
-              ),
-            ),
-          ),
-        ],
-        title: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 25,
-          ),
-          child: AppText(
-            key: UniqueKey(),
-            text: "Suggestions",
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
+      appBar: const CustomAppBar(
+          height: 50,
       ),
-      body: StaggeredGridView.count(
+      body: 
+        Column(children: <Widget> [
+          getHeader(context),
+          Expanded(
+            child: StaggeredGridView.count(
         crossAxisCount: 4,
         staggeredTiles: suggestedItems
             .map<StaggeredTile>((_) => const StaggeredTile.fit(2))
@@ -96,6 +58,29 @@ class SuggestionsItemsScreen extends StatelessWidget {
           );
         }).toList(), // add some space
       ),
+          )
+        ])
+    );
+  }
+
+  Widget getHeader(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Center(child: AppText(
+              key: UniqueKey(),
+              text: "Shopping List",
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              textAlign: TextAlign.center
+            )
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+      ],
     );
   }
 

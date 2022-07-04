@@ -42,6 +42,7 @@ class SupermarketItem extends StatelessWidget {
                       builder: (BuildContext context) => MarketList(
                             supermarketid: supermarket.id,
                             productids: products.items.keys.toList(),
+                            supermarket: supermarket,
                           )));
                 },
               )),

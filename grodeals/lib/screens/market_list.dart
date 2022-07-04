@@ -6,11 +6,15 @@ import 'package:provider/provider.dart';
 import "package:grodeals/providers/listprovider.dart";
 import 'package:grodeals/widgets/replacementitemlist.dart';
 
+import '../common_widgets/app_text.dart';
+import '../widgets/customappbar.dart';
+
 class MarketList extends StatefulWidget {
   final String supermarketid;
+  final Supermarket? supermarket;
   final List<String> productids;
   const MarketList(
-      {Key? key, required this.supermarketid, required this.productids})
+      {Key? key, required this.supermarketid, required this.productids, required this.supermarket})
       : super(key: key);
 
   @override
@@ -27,11 +31,15 @@ class _MarketListState extends State<MarketList> {
     return Scaffold(
         key: _scaffoldKey,
         backgroundColor: Theme.of(context).primaryColor,
-        appBar: AppBar(
-          elevation: 0,
-          title: const Text("GroDeals Shopping List"),
-        ),
-        body: Column(
+         appBar: const CustomAppBar(
+        height: 50,
+      ),
+      body: 
+        Column(
+            children: <Widget> [
+          getHeader(context),
+          Expanded(
+            child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,6 +72,30 @@ class _MarketListState extends State<MarketList> {
               supermarketid: widget.supermarketid,
             ))
           ],
-        ));
+        )
+          )
+            ])
+        );
+  }
+
+  Widget getHeader(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Center(child:AppText(
+              key: UniqueKey(),
+              text: "Shopping List "+ widget.supermarket!.title,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              textAlign: TextAlign.center
+            )
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+      ],
+    );
   }
 }

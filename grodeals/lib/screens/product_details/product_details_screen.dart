@@ -6,6 +6,7 @@ import 'package:grodeals/widgets/item_counter_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:grodeals/providers/listprovider.dart';
 
+import '../../widgets/customappbar.dart';
 import '../shopping_list.dart';
 import 'favourite_toggle_icon_widget.dart';
 
@@ -27,53 +28,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Container(
-            padding: const EdgeInsets.only(left: 25),
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-          ),
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CustomShoppingList(key: UniqueKey())),
-              );
-            },
-            child: Container(
-              padding: const EdgeInsets.only(right: 25),
-              child: const Icon(
-                Icons.shopping_cart,
-                color: Colors.black,
-              ),
-            ),
-          ),
-        ],
-        title: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 25,
-          ),
-          child: const AppText(
-            text: "Beverages",
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
+      appBar: const CustomAppBar(
+          height: 50,
       ),
-      body: SafeArea(
+      body: 
+        Column(
+          children: <Widget> [
+            getHeader(context),
+            Expanded(
+              child: SafeArea(
         child: Column(
           children: [
             getImageHeaderWidget(),
@@ -152,6 +115,29 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ],
         ),
       ),
+            )
+          ])
+    );
+  }
+
+  Widget getHeader(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Center(child:AppText(
+              key: UniqueKey(),
+              text: widget.groceryItem.name,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              textAlign: TextAlign.center
+            )
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+      ],
     );
   }
 
