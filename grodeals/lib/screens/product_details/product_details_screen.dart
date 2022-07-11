@@ -3,6 +3,8 @@ import 'package:grodeals/common_widgets/app_button.dart';
 import 'package:grodeals/common_widgets/app_text.dart';
 import 'package:grodeals/models/grocery_item.dart';
 import 'package:grodeals/widgets/item_counter_widget.dart';
+import 'package:provider/provider.dart';
+import 'package:grodeals/providers/listprovider.dart';
 
 import '../shopping_list.dart';
 import 'favourite_toggle_icon_widget.dart';
@@ -35,7 +37,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             Navigator.pop(context);
           },
           child: Container(
-            padding: EdgeInsets.only(left: 25),
+            padding: const EdgeInsets.only(left: 25),
             child: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
@@ -52,8 +54,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               );
             },
             child: Container(
-              padding: EdgeInsets.only(right: 25),
-              child: Icon(
+              padding: const EdgeInsets.only(right: 25),
+              child: const Icon(
                 Icons.shopping_cart,
                 color: Colors.black,
               ),
@@ -61,10 +63,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ),
         ],
         title: Container(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 25,
           ),
-          child: AppText(
+          child: const AppText(
             text: "Beverages",
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -93,7 +95,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         fontWeight: FontWeight.w600,
                         color: const Color(0xff7C7C7C),
                       ),
-                      trailing: FavoriteToggleIcon(),
+                      trailing: const FavoriteToggleIcon(),
                     ),
                     const Spacer(),
                     Row(
@@ -117,22 +119,31 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                     const Spacer(),
                     const Divider(thickness: 1),
-                    getProductDataRowWidget("Product Details"),
-                    const Divider(thickness: 1),
-                    getProductDataRowWidget("Nutritions",
-                        customWidget: nutritionWidget()),
-                    const Divider(thickness: 1),
                     getProductDataRowWidget(
                       "Review",
                       customWidget: ratingWidget(),
                     ),
                     const Spacer(),
-                    AppButton(
+                    Expanded(
+                        child: AppButton(
                       label: "Add To Basket",
                       onPressed: () {
-                        print("test");
+                        Provider.of<ListProvider>(context, listen: false)
+                            .addItemToList(widget.groceryItem);
+                        showDialog(
+                            context: context,
+                            builder: (_) => AlertDialog(
+                                  title: const Text('Item added'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'OK'),
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ));
                       },
-                    ),
+                    )),
                     const Spacer(),
                   ],
                 ),

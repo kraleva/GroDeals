@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grodeals/providers/listprovider.dart';
 import 'package:grodeals/screens/shopping_list.dart';
+import 'package:grodeals/screens/explore_screen.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;

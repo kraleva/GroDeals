@@ -3,11 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import "package:grodeals/providers/supermarkets.dart";
 import 'package:grodeals/widgets/shoppinglist_supermarket.dart';
 import 'package:provider/provider.dart';
+import "package:grodeals/providers/listprovider.dart";
 import 'package:grodeals/widgets/replacementitemlist.dart';
 
 class MarketList extends StatefulWidget {
   final String supermarketid;
-  const MarketList({Key? key, required this.supermarketid}) : super(key: key);
+  final List<String> productids;
+  const MarketList(
+      {Key? key, required this.supermarketid, required this.productids})
+      : super(key: key);
 
   @override
   State<MarketList> createState() => _MarketListState();
@@ -19,8 +23,7 @@ class _MarketListState extends State<MarketList> {
   @override
   Widget build(BuildContext context) {
     final supermarkets = Provider.of<SupermarketProvider>(context);
-    final supermarketUnavailable =
-        supermarkets.getUnavailable(widget.supermarketid);
+    final products = Provider.of<ListProvider>(context);
     return Scaffold(
         key: _scaffoldKey,
         backgroundColor: Theme.of(context).primaryColor,
@@ -36,7 +39,10 @@ class _MarketListState extends State<MarketList> {
             Expanded(
                 child: ShoppingListForSupermarket(
                     key: UniqueKey(), supermarketid: widget.supermarketid)),
-            (supermarketUnavailable.isNotEmpty)
+            (supermarkets
+                    .getUnavailable(
+                        widget.supermarketid, products.items.keys.toList())
+                    .isNotEmpty)
                 ? const Expanded(
                     child: Align(
                     alignment: Alignment.bottomLeft,

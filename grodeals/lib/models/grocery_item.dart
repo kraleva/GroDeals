@@ -233,6 +233,7 @@ var bakery = [
 
 ];
 
+
 var diaryEggs = [
   GroceryItem(
       id: "prd27",
@@ -264,3 +265,19 @@ var diaryEggs = [
       imagePath: "assets/images/grocery_images/milk.png"),
 ];
 
+var suggestedItems = [
+  GroceryItem(
+      id: "prd13",
+      name: "Ceramont (der Cremige)",
+      description: "Ceramont (der Cremige)",
+      price: 1.99,
+      category: "soft cheese",
+      imagePath: "images/cheese_images/ceramont.png"),
+  GroceryItem(
+      id: "prd14",
+      name: "Weichkase (Ja)",
+      description: "Weichkase (Ja)",
+      price: 1.99,
+      category: "soft cheese",
+      imagePath: "images/cheese_images/ja.png"),
+];
