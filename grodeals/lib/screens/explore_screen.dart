@@ -90,7 +90,8 @@ class ExploreScreen extends StatelessWidget {
   void onCategoryItemClicked(BuildContext context, CategoryItem categoryItem) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) {
-        return const CategoryItemsScreen();
+
+        return CategoryItemsScreen(categoryItem: categoryItem,);
       },
     ));
   }
